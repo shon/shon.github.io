@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>Reliance Netconnect Broadband+ on Linux</title>
+
+
+
+<meta name="title" content="Reliance Netconnect Broadband+ on Linux">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Reliance Netconnect Broadband+ on Linux">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/">
+
+<meta property="twitter:title" content="Reliance Netconnect Broadband+ on Linux">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">reliance-netconnect-broadband-on-linux</span></div>
+<time datetime="2010-11-26">Published on: <span class="metaData">2010-11-26</span></time>
+
+<h1>Reliance Netconnect Broadband+ on Linux</h1>
+
+
+
+<ul>
+<li>It works. Make sure while purchasing you inform them that you use
+Linux</li>
+<li>It's fast and reliable in Pashan, Pune area</li>
+<li>Below config worked for me on Ubuntu 9.10 AND 10.04</li>
+<li>There are Linux drivers on the CD but I could not get it working on
+Ubuntu 9.10.</li>
+<li>For activation, I had to use Windows :(</li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">sudo</span><span> apt-get install usb-modeswitch wvdial
+</span></code></pre>
+<p>vi /etc/wvdial</p>
+<pre data-lang="conf" style="background-color:#2b303b;color:#c0c5ce;" class="language-conf "><code class="language-conf" data-lang="conf"><span style="color:#b48ead;">[Dialer Defaults] 
+</span><span style="color:#bf616a;">Phone </span><span>=</span><span style="color:#d08770;"> #777 
+</span><span style="color:#bf616a;">Password </span><span>= 
+</span><span style="color:#bf616a;">Username </span><span>= 
+</span><span style="color:#bf616a;">Baud </span><span>= </span><span style="color:#d08770;">460800
+</span><span style="color:#bf616a;">Stupid </span><span>Mode = </span><span style="color:#d08770;">1 
+</span><span style="color:#bf616a;">New </span><span>PPPD = </span><span style="color:#d08770;">1 
+</span><span style="color:#bf616a;">Tonline </span><span>= </span><span style="color:#d08770;">0 
+</span><span style="color:#bf616a;">Init1 </span><span>= ATZ 
+</span><span style="color:#bf616a;">Init2 </span><span>= ATQ0 V1E1 S0=</span><span style="color:#d08770;">0</span><span> &amp;C1 &amp;D2 +FCLASS=</span><span style="color:#d08770;">0 
+</span><span style="color:#bf616a;">Modem </span><span>Type = Analog Modem 
+</span><span style="color:#bf616a;">Modem </span><span>= /dev/ttyUSB0 
+</span><span>ISDN = </span><span style="color:#d08770;">0
+</span></code></pre>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

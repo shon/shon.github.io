@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>JSON-RPC</title>
+
+
+
+<meta name="title" content="JSON-RPC">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/jsonrpc/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="JSON-RPC">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/jsonrpc/">
+
+<meta property="twitter:title" content="JSON-RPC">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/jsonrpc/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">jsonrpc</span></div>
+<time datetime="2013-01-13">Published on: <span class="metaData">2013-01-13</span></time>
+
+<h1>JSON-RPC</h1>
+
+
+
+<p><a href="http://json-rpc.org/">JSON-RPC</a> protocol has got much less attention
+than it deserves. It is so elegant and simple. Our experience of working
+on JSON-RPC was plesant.</p>
+<p>For uninitiated JSON-RPC is lightweight remote procedure call protocol
+similar to XML-RPC. I find it incredibly useful in building easy to
+maintain applications.</p>
+<p>We effectively used JSONRPC in our project <a href="http://cowoop.net/">Cowoop</a>
+to make it easy to debug application.</p>
+<p>It is often seen that unless it is an open source application, in the
+design phase very little attention is paid towards maintainablity of the
+application. With many no so clearly seperated layers it makes it
+increasingly difficult to debug. This makes bug fixing painful and no
+fun process for those who are working on it. And further these in most
+cases are not the architects who designed the application. Architect is
+either moved on to design some other project or is working on next
+release.</p>
+<p>Lets directly jump to example code. So here is my python function.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="background-color:#bf616a;color:#2b303b;">def</span><span> </span><span style="color:#bf616a;">add</span><span>(a, b):
+</span><span>        </span><span style="color:#b48ead;">return </span><span>a + b
+</span><span>
+</span><span>&gt;&gt;&gt; </span><span style="color:#bf616a;">add</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>)
+</span><span style="color:#d08770;">3
+</span></code></pre>
+<p>Project exposes above function [add]{.title-ref} using JSON-RPC. We use
+<a href="http://flask.pocoo.org/">Flask</a> +
+<a href="http://packages.python.org/jsonrpc2">jsonrpc2</a> to serve JSONRPC over
+http.</p>
+<p>Let us see how does jquery JSONRPC plugin calls this API.</p>
+<p><img src="/static/images/001.png" alt="image" /></p>
+<p>Result</p>
+<p><img src="/static/images/003.png" alt="image" /></p>
+<p>jsonrpc function that you see in above screenshot is part of our js
+client library. Really it is a a few lines wrapper on top of <a href="https://github.com/datagraph/jquery-jsonrpc">jquery
+jsonrpc plugin</a> function
+jsonRPC.request()</p>
+<p>Do you think JSONRPC2 is fairly successful in helping create a
+maintainable application?</p>
+<h2 id="challenges">Challenges</h2>
+<h3 id="authentication">Authentication</h3>
+<p>There is no word in JSONRPC2 specification about Authentication yet (not
+a complaint) . But I think it is necessary for further success of
+JSONRPC. It's possible to use http auth but not many would prefer it so
+I see people implementing two type of solutions.</p>
+<h4 id="authentication-using-cookies">Authentication | Using cookies</h4>
+<p>Session id is kept in authcookie and sent/validated with every http
+request.</p>
+<h4 id="authentication-using-special-parameters-in-rpc-call">Authentication | Using special parameters in rpc call</h4>
+<p>Session id is passed as special parameter in every rpc call. For eg.
+above add function may be invoked like below</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#bf616a;">add</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#bf616a;">_session</span><span>=&#39;</span><span style="color:#a3be8c;">somesessionid</span><span>&#39;)
+</span></code></pre>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>Using DOT language to produce Flowchart</title>
+
+
+
+<meta name="title" content="Using DOT language to produce Flowchart">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/using-dot-language-to-produce-flowchart/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Using DOT language to produce Flowchart">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/using-dot-language-to-produce-flowchart/">
+
+<meta property="twitter:title" content="Using DOT language to produce Flowchart">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/using-dot-language-to-produce-flowchart/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">using-dot-language-to-produce-flowchart</span></div>
+<time datetime="2008-12-09">Published on: <span class="metaData">2008-12-09</span></time>
+
+<h1>Using DOT language to produce Flowchart</h1>
+
+
+
+<p>better than struggling with the graphical tools.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> cat test.dot
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>digraph FlowChart {
+</span><span>
+</span><span> node [
+</span><span>         fontname = &quot;Bitstream Vera Sans&quot;
+</span><span>         fontsize = 8
+</span><span>         shape = &quot;record&quot;
+</span><span>     ]
+</span><span>
+</span><span> edge [
+</span><span>         fontname = &quot;Bitstream Vera Sans&quot;
+</span><span>         fontsize = 8
+</span><span>         fontcolor = &quot;Red&quot;
+</span><span>     ]
+</span><span>
+</span><span>// all blocks
+</span><span>greet [label=&quot;Hello, techie&quot;, shape=&quot;oval&quot;]
+</span><span>which_os [label=&quot;What OS do you use?&quot; shape=&quot;diamond&quot;]
+</span><span>like_me [label=&quot;Great, me too!&quot;, shape=&quot;oval&quot;]
+</span><span>which_browser [label=&quot;You must be using firefox&quot;, shape=&quot;diamond&quot;]
+</span><span>ff [label=&quot;Cool&quot;, shape=&quot;oval&quot;]
+</span><span>bye [label=&quot;Bye&quot;, shape=&quot;oval&quot;]
+</span><span>
+</span><span>// relations
+</span><span>greet -&gt; which_os
+</span><span>which_os -&gt; like_me [label=&quot;I use Linux&quot;]
+</span><span>which_os -&gt; which_browser [label=&quot;I use Windows&quot;]
+</span><span>which_browser -&gt; ff [label=&quot;Right&quot;]
+</span><span>which_browser -&gt; bye [label=&quot;what firefox?&quot;]
+</span><span>}
+</span></code></pre>
+<p>Here is the result.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> dot test.dot</span><span style="color:#bf616a;"> -Tpng -o</span><span> test.png &amp;&amp; </span><span style="color:#bf616a;">eog</span><span> test.png
+</span></code></pre>
+<p><img src="/static/images/002.png" alt="image" /></p>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>
