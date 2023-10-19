@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - zola</title>
+    <link href="https://shon.github.io/hashtags/zola/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://shon.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-10-19T00:00:00+00:00</updated>
+    <id>https://shon.github.io/hashtags/zola/atom.xml</id>
+    <entry xml:lang="en">
+        <title></title>
+        <published>2023-10-19T00:00:00+00:00</published>
+        <updated>2023-10-19T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://shon.github.io/journal/2023-10-19/" type="text/html"/>
+        <id>https://shon.github.io/journal/2023-10-19/</id>
+        
+        <content type="html">&lt;p&gt;Microblogging is fascinating.&lt;&#x2F;p&gt;
+&lt;p&gt;I love what Twitter has done and is doing. Deeply admire Jack Dorsey and Elon. &lt;&#x2F;p&gt;
+&lt;p&gt;As much as I love Twitter, Rs. 650&#x2F;mo for premium subscription would be too much for me. I wish there was a more affordable plan. &lt;&#x2F;p&gt;
+&lt;p&gt;I always wanted to have some form of microblogging in the products that I worked on in the past. That never really happened. But thatnks to Zola, now that my blog is alive again, I want to experiement with journal&#x2F;microblogging system. So I spent a few minutes this morning and setup this quick microblog.&lt;&#x2F;p&gt;
+&lt;p&gt;One downside of such microblog setups is no interactivity. Will think of comments a bit later.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;No Titles (If you compare with usual blog posts)&lt;&#x2F;li&gt;
+&lt;li&gt;Date as permalink&lt;&#x2F;li&gt;
+&lt;li&gt;New journal tagging - So that it&#x27;s easy to just list journal posts by journal tags&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
