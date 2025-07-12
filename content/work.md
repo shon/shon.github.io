@@ -1,22 +1,30 @@
 +++
-title = "Work"
+title = "Work resume"
 +++
 
 ## What I Offer
 
+### Skills 
+
+- 🐍 Python 
+- 🐧 Linux, Open Source
+- 🏛 Web Application Architecture
+- 👥 Engineering culture
+
+
 I assist startups in building scalable web applications. In the past, I have created a successful open-source product and operated a hosted service based on it. 
 
-At present, I am architecting software and leading development teams.
+## Education and experience
+
+I am a self taught programmer with formal education in Electronics engineering. 
+
+I started my career as a Linux systems administrator and eventually got into software developemnt. I have worked with various product development companies of different sizes. I particularly enjoyed working for companies with startup culture.
 
 ## 🕜 Availability
 
 Currently, I am engaged in building a platform, stck.me, for writers. While I am not actively seeking new opportunities, I am open to discussions should you have an intriguing proposal. 
 
 If the project has a calling and depending on my availability, I may offer friendly advice, at no charge.
-
-## Skills 
-
-Python, Linux, Web Application Architecture
 
 ## Work Style
 

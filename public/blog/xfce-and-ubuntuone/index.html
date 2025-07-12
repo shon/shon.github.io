@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>xfce and ubuntuone</title>
+
+
+
+<meta name="title" content="xfce and ubuntuone">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/xfce-and-ubuntuone/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="xfce and ubuntuone">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/xfce-and-ubuntuone/">
+
+<meta property="twitter:title" content="xfce and ubuntuone">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/xfce-and-ubuntuone/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">xfce-and-ubuntuone</span></div>
+<time datetime="2010-11-26">Published on: <span class="metaData">2010-11-26</span></time>
+
+<h1>xfce and ubuntuone</h1>
+
+
+
+<p>I do like Ubuntu Netbook Remix's UI. However with 10.04 it's just gone
+so unstable for me.</p>
+<ul>
+<li>After login when system prompts for keyring secret, UNR environment
+crashes and drops to gnome. I have to relogin if I need UNR env.</li>
+<li>After I removed a few packages it could not just start gnome panel
+causing a great inconvenience. I guess this is due to Evolution
+integration with latest Ubuntu. Mail client I like and use is
+<a href="http://www.mozillamessaging.com/en-US/thunderbird/">Thunderbird</a>. I
+cant switch to Evolution.</li>
+<li>Initially after 10.04 release it was damn slow to respond, so had to
+do some work around to get it to acceptable speed.</li>
+</ul>
+<p>Considering all that I decided to switch to
+<a href="http://www.xfce.org/about/screenshots">Xfce</a>. It just worked like
+charm. But now I also use (and like :) )
+<a href="https://one.ubuntu.com/">UbuntuOne</a> service for my backup. UbuntuOne is
+not integrated for XFCE. Also you cant do everything from UbuntuOne's
+cli.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">u1sdtool -q</span><span>;</span><span style="color:#bf616a;">killall</span><span> ubuntuone-login; </span><span style="color:#bf616a;">u1sdtool -c </span><span style="color:#65737e;"># configuration
+</span><span style="color:#bf616a;">u1sdtool --create-folder ~</span><span>/my_data </span><span style="color:#65737e;"># add folders you want
+</span><span style="color:#bf616a;">synced</span><span> u1sdtool</span><span style="color:#bf616a;"> --list-folders</span><span> u1sdtool</span><span style="color:#bf616a;"> --current-transfers
+</span></code></pre>
+<p>For more details you might want to check <a href="https://wiki.ubuntu.com/UbuntuOne/FAQ#How%20do%20I%20add%20my%20computer?">Ubuntu One wiki</a>
+.</p>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

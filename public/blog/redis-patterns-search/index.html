@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>Redis patterns | search</title>
+
+
+
+<meta name="title" content="Redis patterns | search">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/redis-patterns-search/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Redis patterns | search">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/redis-patterns-search/">
+
+<meta property="twitter:title" content="Redis patterns | search">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/redis-patterns-search/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">redis-patterns-search</span></div>
+<time datetime="2010-11-26">Published on: <span class="metaData">2010-11-26</span></time>
+
+<h1>Redis patterns | search</h1>
+
+
+
+<h2 id="problem">Problem</h2>
+<p>You want to implement search against user objects stored in redis using
+Python. Something like querying for all user ids whose username begins
+with &quot;an&quot;.</p>
+<h2 id="solution">Solution</h2>
+<p>Here we have user objects stored in as hashes with &quot;user:obj:&quot; as
+prefix.</p>
+<p>For example</p>
+<p><code>user:obj:3955 {id: 3955, username: 'John', ..}</code></p>
+<p>We need some extra data structures to support our search i.e. (search
+user objects where username begins with given phrase. So search for <code>jo</code>
+should match John, Joe and so on. We will use sorted sets of all
+usernames and will assign every element a score. This score is a float
+and helps us in finding the matching words.</p>
+<p>Some scores for eg.</p>
+<p><code>a -&gt; 0.097ab -&gt; 0.097098ac -&gt; 0.097099bc -&gt; 0.098099</code></p>
+<p>So for above four string if we find strings that has score that is =&gt;
+0.097 and &lt; 0.098, we find all strings that begins with 'a'</p>
+<p>Code</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#65737e;"># Search usernames that begins with given phrase
+</span><span style="color:#65737e;">#
+</span><span style="color:#65737e;"># usernames: (username1, username2, ..)
+</span><span style="color:#65737e;"># userscore:&lt;username&gt;: float
+</span><span style="color:#65737e;"># user:obj: { id: int, username: string }
+</span><span>
+</span><span>usernames_zset = &quot;</span><span style="color:#a3be8c;">usernames</span><span>&quot;
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">my_ord</span><span>(</span><span style="color:#bf616a;">c</span><span>):
+</span><span>    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#d08770;">%03d</span><span>&quot; % </span><span style="color:#96b5b4;">ord</span><span>(c)
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">get_score</span><span>(</span><span style="color:#bf616a;">s</span><span>):
+</span><span>    </span><span style="color:#b48ead;">return </span><span>&#39;</span><span style="color:#a3be8c;">0.</span><span>&#39; + &#39;&#39;.</span><span style="color:#bf616a;">join</span><span>(</span><span style="color:#96b5b4;">map</span><span>(str, </span><span style="color:#96b5b4;">map</span><span>(my_ord,s)))
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">get_next_score</span><span>(</span><span style="color:#bf616a;">s</span><span>):
+</span><span>    s_score = </span><span style="color:#bf616a;">get_score</span><span>(s)
+</span><span>    part0 = s_score[:</span><span style="color:#d08770;">4</span><span>]
+</span><span>    c = s_score[</span><span style="color:#d08770;">4</span><span>]
+</span><span>    next_c = </span><span style="color:#bf616a;">str</span><span>(</span><span style="color:#bf616a;">int</span><span>(c)+</span><span style="color:#d08770;">1</span><span>)
+</span><span>    part1 = s_score[</span><span style="color:#d08770;">5</span><span>:]
+</span><span>    </span><span style="color:#b48ead;">return </span><span>part0 + next_c + part1
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">add_user</span><span>(</span><span style="color:#bf616a;">conn</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">score</span><span>):
+</span><span>    </span><span style="color:#65737e;"># The User Object
+</span><span>    uid = conn.</span><span style="color:#bf616a;">incr</span><span>(&#39;</span><span style="color:#a3be8c;">user:idgen</span><span>&#39;)
+</span><span>    conn.</span><span style="color:#bf616a;">hset</span><span>(&#39;</span><span style="color:#a3be8c;">user:obj:</span><span style="color:#d08770;">%d</span><span>&#39; % uid, &#39;</span><span style="color:#a3be8c;">id</span><span>&#39;, username)
+</span><span>    </span><span style="color:#65737e;"># datastructures necessary to implement search
+</span><span>    conn.</span><span style="color:#bf616a;">zadd</span><span>(usernames_zset, username, score)
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">add_test_data</span><span>(</span><span style="color:#bf616a;">conn</span><span>):
+</span><span>    test_data = (&#39;</span><span style="color:#a3be8c;">abc</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">ab</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">shekhar</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">shon</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">sh</span><span>&#39;, \
+</span><span>        &#39;</span><span style="color:#a3be8c;">zxcvbnmasdfghjklqwertyuiop0</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">zxcvbnmasdfghjklqwertyuiop00</span><span>&#39;)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>username </span><span style="color:#b48ead;">in </span><span>test_data:
+</span><span>        score = </span><span style="color:#bf616a;">get_score</span><span>(username)
+</span><span>        </span><span style="color:#bf616a;">add_user</span><span>(conn, username, score)
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>redis
+</span><span>conn = redis.</span><span style="color:#bf616a;">Redis</span><span>()
+</span><span>
+</span><span style="color:#bf616a;">add_test_data</span><span>(conn)
+</span><span>
+</span><span style="color:#65737e;"># conn.zrange(usernames_zset, 0, -1) # Whole set
+</span><span>a_score = </span><span style="color:#bf616a;">get_score</span><span>(&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;)
+</span><span>b_score = </span><span style="color:#bf616a;">get_next_score</span><span>(&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;)
+</span><span>
+</span><span style="color:#b48ead;">print </span><span>&#39;</span><span style="color:#a3be8c;">Find all users starting with &quot;a&quot; -&gt; INF</span><span>&#39;
+</span><span style="color:#b48ead;">print </span><span>conn.</span><span style="color:#bf616a;">zrangebyscore</span><span>(usernames_zset, a_score, &#39;</span><span style="color:#a3be8c;">INF</span><span>&#39;)
+</span><span style="color:#b48ead;">print </span><span>&#39;</span><span style="color:#a3be8c;">Find all users starting with &quot;a&quot;</span><span>&#39;
+</span><span style="color:#b48ead;">print </span><span>conn.</span><span style="color:#bf616a;">zrangebyscore</span><span>(usernames_zset, a_score, b_score)
+</span><span style="color:#b48ead;">print </span><span>&#39;</span><span style="color:#a3be8c;">Find all users starting with &quot;a&quot; limit 2</span><span>&#39;
+</span><span style="color:#b48ead;">print </span><span>conn.</span><span style="color:#bf616a;">zrangebyscore</span><span>(usernames_zset, a_score, &#39;</span><span style="color:#a3be8c;">INF</span><span>&#39;, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">2</span><span>)
+</span></code></pre>
+<h2 id="discussion">Discussion</h2>
+<p>This to demonstrate simple redis pattern and using it in Python.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="http://code.google.com/p/redis/wiki/ZrangebyscoreCommand">ZrangebyscoreCommand</a></li>
+</ul>
+<p>There are already some good writeups on related topics.</p>
+<ul>
+<li><a href="http://playnice.ly/blog/2010/05/24/redis-multi-field-searching-and-filtering/">playnicely</a></li>
+<li><a href="http://antirez.com/post/autocomplete-with-redis.html">autocomplete</a></li>
+</ul>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

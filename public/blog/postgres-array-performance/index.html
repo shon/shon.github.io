@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>Postgres Array vs Join benchmark</title>
+
+
+
+<meta name="title" content="Postgres Array vs Join benchmark">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/postgres-array-performance/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Postgres Array vs Join benchmark">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/postgres-array-performance/">
+
+<meta property="twitter:title" content="Postgres Array vs Join benchmark">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/postgres-array-performance/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">postgres-array-performance</span></div>
+<time datetime="2015-12-21">Published on: <span class="metaData">2015-12-21</span></time>
+
+<h1>Postgres Array vs Join benchmark</h1>
+
+
+
+<p>Here is little experiment to measure postgresql array's performance.
+For the example problem let us take blog posts and tags.</p>
+<h2 id="join-approach">Join approach</h2>
+<p>This is perhaps more common approach to model posts and tags. So let's
+define model. Here I am using excellent
+<a href="http://peewee.readthedocs.org">Peewee</a>. So we have three tables Post,
+Tag and PostTag. PostTag table maintains all post to tag records.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Post</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    title = </span><span style="color:#bf616a;">CharField</span><span>(</span><span style="color:#bf616a;">default</span><span>=&#39;</span><span style="color:#a3be8c;">example title</span><span>&#39;)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Tag</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    name = </span><span style="color:#bf616a;">CharField</span><span>()
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">PostTag</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    post = </span><span style="color:#bf616a;">ForeignKeyField</span><span>(Post)
+</span><span>    tag = </span><span style="color:#bf616a;">ForeignKeyField</span><span>(Tag)
+</span></code></pre>
+<h2 id="array">Array</h2>
+<p>Postgresql supports array columns. In this model array field Post.tags
+shall be used to maintain post-tag entries instead of PostTag model.
+Even <em>Tag</em> is not needed in this case.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Post</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    title = </span><span style="color:#bf616a;">CharField</span><span>(</span><span style="color:#bf616a;">default</span><span>=&#39;</span><span style="color:#a3be8c;">example title</span><span>&#39;)
+</span><span>    tags = </span><span style="color:#bf616a;">ArrayField</span><span>(CharField, </span><span style="color:#bf616a;">default</span><span>=[], </span><span style="color:#bf616a;">index</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span></code></pre>
+<h2 id="complete-code">Complete code</h2>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>random
+</span><span>
+</span><span style="color:#b48ead;">from </span><span>tqdm </span><span style="color:#b48ead;">import </span><span>tqdm
+</span><span style="color:#b48ead;">from </span><span>peewee </span><span style="color:#b48ead;">import </span><span style="color:#d08770;">*
+</span><span style="color:#b48ead;">from </span><span>myapp </span><span style="color:#b48ead;">import </span><span>db
+</span><span style="color:#b48ead;">from </span><span>playhouse.postgres_ext </span><span style="color:#b48ead;">import </span><span>ArrayField, ForeignKeyField
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">BaseModel</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">Model</span><span style="color:#eff1f5;">):
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Meta</span><span style="color:#eff1f5;">:
+</span><span>        database = db
+</span><span>        only_save_dirty = </span><span style="color:#d08770;">True
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Post</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    title = </span><span style="color:#bf616a;">CharField</span><span>(</span><span style="color:#bf616a;">default</span><span>=&#39;</span><span style="color:#a3be8c;">example title</span><span>&#39;)
+</span><span>    tags = </span><span style="color:#bf616a;">ArrayField</span><span>(CharField, </span><span style="color:#bf616a;">default</span><span>=[], </span><span style="color:#bf616a;">index</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Tag</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    name = </span><span style="color:#bf616a;">CharField</span><span>()
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">PostTag</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">BaseModel</span><span style="color:#eff1f5;">):
+</span><span>    post = </span><span style="color:#bf616a;">ForeignKeyField</span><span>(Post)
+</span><span>    tag = </span><span style="color:#bf616a;">ForeignKeyField</span><span>(Tag)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">setup</span><span>():
+</span><span>    no_of_posts = </span><span style="color:#d08770;">25000
+</span><span>    no_of_tags = </span><span style="color:#d08770;">10000
+</span><span>    tags_per_post = </span><span style="color:#d08770;">15
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>t </span><span style="color:#b48ead;">in </span><span>(PostTag, Tag, Post):
+</span><span>        </span><span style="color:#b48ead;">if </span><span>t.</span><span style="color:#bf616a;">table_exists</span><span>():
+</span><span>            t.</span><span style="color:#bf616a;">drop_table</span><span>()
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>t </span><span style="color:#b48ead;">in </span><span>(Tag, Post, PostTag):
+</span><span>        t.</span><span style="color:#bf616a;">create_table</span><span>()
+</span><span>
+</span><span>    tags = [{&#39;</span><span style="color:#a3be8c;">name</span><span>&#39;: (&#39;</span><span style="color:#a3be8c;">tag-</span><span style="color:#d08770;">%d</span><span>&#39; % i)} </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">1</span><span>, no_of_tags)]
+</span><span>    Tag.</span><span style="color:#bf616a;">insert_many</span><span>(tags).</span><span style="color:#bf616a;">execute</span><span>()
+</span><span>
+</span><span>    posts = [{&#39;</span><span style="color:#a3be8c;">id</span><span>&#39;: i, &#39;</span><span style="color:#a3be8c;">tags</span><span>&#39;: [(&#39;</span><span style="color:#a3be8c;">tag-</span><span style="color:#d08770;">%d</span><span>&#39; % j) </span><span style="color:#b48ead;">for </span><span>j </span><span style="color:#b48ead;">in </span><span>random.</span><span style="color:#bf616a;">sample</span><span>(</span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">1</span><span>, no_of_tags), tags_per_post)]}
+</span><span>             </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">1</span><span>, no_of_posts)]
+</span><span>    Post.</span><span style="color:#bf616a;">insert_many</span><span>(posts).</span><span style="color:#bf616a;">execute</span><span>()
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for </span><span>post </span><span style="color:#b48ead;">in </span><span style="color:#bf616a;">tqdm</span><span>(posts):
+</span><span>        post_id = post[&#39;</span><span style="color:#a3be8c;">id</span><span>&#39;]
+</span><span>        post_tags = [{&#39;</span><span style="color:#a3be8c;">post</span><span>&#39;: post_id, &#39;</span><span style="color:#a3be8c;">tag</span><span>&#39;: tag.</span><span style="color:#bf616a;">split</span><span>(&#39;</span><span style="color:#a3be8c;">-</span><span>&#39;)[</span><span style="color:#d08770;">1</span><span>]} </span><span style="color:#b48ead;">for </span><span>tag </span><span style="color:#b48ead;">in </span><span>post[&#39;</span><span style="color:#a3be8c;">tags</span><span>&#39;]]
+</span><span>        PostTag.</span><span style="color:#bf616a;">insert_many</span><span>(post_tags).</span><span style="color:#bf616a;">execute</span><span>()
+</span><span>
+</span><span>    </span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">Total posts: </span><span style="color:#d08770;">%d</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">Total tags: </span><span style="color:#d08770;">%d</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">Tags per post: </span><span style="color:#d08770;">%d</span><span style="color:#96b5b4;">\n</span><span>&#39; % (no_of_posts, no_of_tags, tags_per_post))
+</span><span>
+</span><span>
+</span><span> </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_join</span><span>():
+</span><span>    </span><span style="color:#65737e;"># =&gt; SELECT Count(post.id) FROM post INNER JOIN posttag ON (post.id = posttag.post_id) \
+</span><span>    </span><span style="color:#65737e;">#    WHERE (posttag.tag_id = 8);
+</span><span>    </span><span style="color:#b48ead;">return </span><span>Post.</span><span style="color:#bf616a;">select</span><span>().</span><span style="color:#bf616a;">join</span><span>(PostTag).</span><span style="color:#bf616a;">join</span><span>(Tag).</span><span style="color:#bf616a;">where</span><span>(Tag.id == &#39;</span><span style="color:#a3be8c;">8</span><span>&#39;).</span><span style="color:#bf616a;">count</span><span>()
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_array</span><span>():
+</span><span>    </span><span style="color:#65737e;"># =&gt; SELECT Count(&quot;id&quot;) FROM post WHERE tags @&gt; &#39;{tag-8}&#39;;
+</span><span>    </span><span style="color:#b48ead;">return </span><span>Post.</span><span style="color:#bf616a;">select</span><span>().</span><span style="color:#bf616a;">where</span><span>(Post.tags.</span><span style="color:#bf616a;">contains</span><span>(&#39;</span><span style="color:#a3be8c;">tag-8</span><span>&#39;)).</span><span style="color:#bf616a;">count</span><span>()
+</span></code></pre>
+<p>Needless to say selecting tags for a article would be faster as we are
+elinimating the joins. But it would be interesting to see that how
+finding articles for given tag will perform.</p>
+<p>And here are the numbers on my machine (Mac Air Ubuntu 15.10 Python
+2.7.9).</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> python</span><span style="color:#bf616a;"> -i</span><span> bench.py
+</span><span>&gt;&gt;&gt; setup()
+</span><span style="color:#bf616a;">Total</span><span> posts: 25000
+</span><span style="color:#bf616a;">Total</span><span> tags: 1000
+</span><span style="color:#bf616a;">Tags</span><span> per post: 15
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> python</span><span style="color:#bf616a;"> -mtimeit -s</span><span>&#39;</span><span style="color:#a3be8c;">import bench</span><span>&#39; &#39;</span><span style="color:#a3be8c;">bench.test_join()</span><span>&#39;
+</span><span style="color:#bf616a;">100</span><span> loops, best of 3: 8.32 msec per loop
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> python</span><span style="color:#bf616a;"> -mtimeit -s</span><span>&#39;</span><span style="color:#a3be8c;">import bench</span><span>&#39; &#39;</span><span style="color:#a3be8c;">bench.test_array()</span><span>&#39;
+</span><span style="color:#bf616a;">1000</span><span> loops, best of 3: 869 usec per loop
+</span></code></pre>
+
+
+<p class="tagsData">
+  
+  
+  <a href="/tags/python">&#47;python&#47;</a>
+  
+  <a href="/tags/postgresql">&#47;postgresql&#47;</a>
+  
+  <a href="/tags/peewee">&#47;peewee&#47;</a>
+  
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

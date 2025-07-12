@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<title>Contract verification in Python</title>
+
+
+
+<meta name="title" content="Contract verification in Python">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/contract-verification-in-python/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Contract verification in Python">
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/contract-verification-in-python/">
+
+<meta property="twitter:title" content="Contract verification in Python">
+
+
+
+
+<link rel="canonical" href="https://shon.github.io/blog/contract-verification-in-python/">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">contract-verification-in-python</span></div>
+<time datetime="2008-04-17">Published on: <span class="metaData">2008-04-17</span></time>
+
+<h1>Contract verification in Python</h1>
+
+
+
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>zope.interface.verify
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">ITest</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">zope.interface.Interface</span><span style="color:#eff1f5;">):
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#bf616a;">arg1</span><span>): </span><span style="color:#b48ead;">pass
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">bar</span><span>(): </span><span style="color:#b48ead;">pass   
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Test</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">object</span><span style="color:#eff1f5;">):
+</span><span>   zope.interface.</span><span style="color:#bf616a;">implements</span><span>(ITest)
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#bf616a;">self</span><span>): </span><span style="color:#b48ead;">pass
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Test2</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">object</span><span style="color:#eff1f5;">):
+</span><span>   zope.interface.</span><span style="color:#bf616a;">implements</span><span>(ITest)
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">arg1</span><span>): </span><span style="color:#b48ead;">pass
+</span><span>
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Test3</span><span style="color:#eff1f5;">(</span><span style="color:#a3be8c;">object</span><span style="color:#eff1f5;">):
+</span><span>   zope.interface.</span><span style="color:#bf616a;">implements</span><span>(ITest)
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">foo</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">arg1</span><span>): </span><span style="color:#b48ead;">pass
+</span><span>   </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">bar</span><span>(</span><span style="color:#bf616a;">self</span><span>): </span><span style="color:#b48ead;">pass
+</span><span>
+</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">cls </span><span style="color:#b48ead;">in </span><span>(Test, Test2, Test3):
+</span><span>   </span><span style="color:#b48ead;">try</span><span>:
+</span><span>       </span><span style="color:#b48ead;">if </span><span>zope.interface.verify.</span><span style="color:#bf616a;">verifyClass</span><span>(ITest, </span><span style="color:#bf616a;">cls</span><span>):
+</span><span>           </span><span style="color:#b48ead;">print </span><span>&quot;</span><span style="color:#a3be8c;">OK: </span><span style="color:#d08770;">%s</span><span style="color:#a3be8c;"> correctly implements </span><span style="color:#d08770;">%s</span><span>&quot; % (</span><span style="color:#bf616a;">cls</span><span>.__name__, ITest.__name__)
+</span><span>   </span><span style="color:#b48ead;">except </span><span>Exception, err:
+</span><span>       </span><span style="color:#b48ead;">print </span><span>&quot;</span><span style="color:#a3be8c;">Error detected with </span><span style="color:#d08770;">%s</span><span style="color:#a3be8c;">&#39;s implementation: </span><span style="color:#d08770;">%s</span><span>&quot; % (</span><span style="color:#bf616a;">cls</span><span>.__name__, err)
+</span></code></pre>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+# The URL the site will be built for
+base_url = "https://shon.github.io"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "anemone"
+generate_feed = true
+
+# theme = "terminimal"
+
+taxonomies = [
+    {name = "tags", feed = true},
+    {name = "hashtags", feed = true},
+]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+
+[extra]
+# Put all your custom variables here
+list_pages = false
+toc = true
+[[extra.header_nav]]
+en = { name = "home ", url = "/" }
+
+[[extra.header_nav]]
+en = { name = " work", url = "/work" }
+
+[[extra.header_nav]]
+en = { name = " journal ", url = "/journal" }
+
+[[extra.header_nav]]
+en = { name = " blog", url = "/blog" }

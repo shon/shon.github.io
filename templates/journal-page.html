@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ page.components[1] }}
+</h1>
+
+<!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->  
+<div>{{ page.content | safe }}</div>
+<p>
+  {% if page.taxonomies.hashtags %}
+  {% for hashtag in page.taxonomies.hashtags %}
+  <a href="/hashtags/{{ hashtag | slugify }}"> #{{ hashtag }} </a>
+  {% endfor %}
+  {% endif %}
+</p>
+
+{% endblock content %}
+
+- I am also on <a href="https://twitter.com/shon_">X (Twitter) as [@shon_]</a>

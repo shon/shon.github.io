@@ -1,0 +1,79 @@
++++
+title = "JSON-RPC"
+tags = ['python,', 'programming,', 'jsonrpc,', 'design']
+date = "2013-01-13"
++++
+
+[JSON-RPC](http://json-rpc.org/) protocol has got much less attention
+than it deserves. It is so elegant and simple. Our experience of working
+on JSON-RPC was plesant.
+
+For uninitiated JSON-RPC is lightweight remote procedure call protocol
+similar to XML-RPC. I find it incredibly useful in building easy to
+maintain applications.
+
+We effectively used JSONRPC in our project [Cowoop](http://cowoop.net/)
+to make it easy to debug application.
+
+It is often seen that unless it is an open source application, in the
+design phase very little attention is paid towards maintainablity of the
+application. With many no so clearly seperated layers it makes it
+increasingly difficult to debug. This makes bug fixing painful and no
+fun process for those who are working on it. And further these in most
+cases are not the architects who designed the application. Architect is
+either moved on to design some other project or is working on next
+release.
+
+Lets directly jump to example code. So here is my python function.
+
+``` python
+>>> def add(a, b):
+        return a + b
+
+>>> add(1, 2)
+3
+```
+
+Project exposes above function [add]{.title-ref} using JSON-RPC. We use
+[Flask](http://flask.pocoo.org/) +
+[jsonrpc2](http://packages.python.org/jsonrpc2) to serve JSONRPC over
+http.
+
+Let us see how does jquery JSONRPC plugin calls this API.
+
+![image](/static/images/001.png)
+
+Result
+
+![image](/static/images/003.png)
+
+jsonrpc function that you see in above screenshot is part of our js
+client library. Really it is a a few lines wrapper on top of [jquery
+jsonrpc plugin](https://github.com/datagraph/jquery-jsonrpc) function
+jsonRPC.request()
+
+Do you think JSONRPC2 is fairly successful in helping create a
+maintainable application?
+
+## Challenges
+
+### Authentication
+
+There is no word in JSONRPC2 specification about Authentication yet (not
+a complaint) . But I think it is necessary for further success of
+JSONRPC. It's possible to use http auth but not many would prefer it so
+I see people implementing two type of solutions.
+
+#### Authentication | Using cookies
+
+Session id is kept in authcookie and sent/validated with every http
+request.
+
+#### Authentication | Using special parameters in rpc call
+
+Session id is passed as special parameter in every rpc call. For eg.
+above add function may be invoked like below
+
+``` python
+add(1, 2, _session='somesessionid')
+```
