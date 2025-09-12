@@ -1,6 +1,7 @@
 +++
 title = "Exploring Team Knowledge wiki Outline (getoutline.com)"
 date = "2025-07-13"
+[taxonomies]
 tags = ['makrdown', 'wiki', 'knowledge-base']
 +++
 

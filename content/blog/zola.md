@@ -1,7 +1,8 @@
 +++
 title = "Zola"
-tags = ['SSG', 'blogging']
 date = "2023-10-20"
+[taxonomies]
+tags = ['SSG', 'blogging']
 +++
 
 This site is powered by excellent [Zola](https://www.getzola.org/).
