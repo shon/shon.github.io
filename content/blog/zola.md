@@ -1,6 +1,6 @@
 +++
 title = "Zola"
-tags = ['SSG', 'blogging,']
+tags = ['SSG', 'blogging']
 date = "2023-10-20"
 +++
 
@@ -21,4 +21,4 @@ I wrote a script to port RestructuredText files to Markdown and restructure the 
 Among Zola themes, [Anemone](https://github.com/Speyll/anemone) theme is fairly close to the minimalist style I was looking for. 
 Also spent some time customizing Zola for my requirement and taste. One of the customization is using [JetBrains Mono font](https://www.jetbrains.com/lp/mono/) (inspiration: https://ansht.me). So all in all, the outcome is a rejuvenated blog space that felt just right, mirroring the simplicity and flexibility that I longed for.
 
-So here’s to many more blog posts, code snippets, and the continuous quest for the perfect blogging setup! 
+So here’s to many more blog posts, code snippets, and the continuous quest for the perfect blogging setup!
