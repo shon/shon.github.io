@@ -4,8 +4,39 @@
     <link href="https://shon.github.io/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://shon.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-10-24T00:00:00+00:00</updated>
+    <updated>2025-07-13T00:00:00+00:00</updated>
     <id>https://shon.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Team Knowledge wiki Outline (getoutline.com)</title>
+        <published>2025-07-13T00:00:00+00:00</published>
+        <updated>2025-07-13T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://shon.github.io/blog/exploring-outline/" type="text/html"/>
+        <id>https://shon.github.io/blog/exploring-outline/</id>
+        
+        <content type="html">&lt;p&gt;Sometime back, I have stumbled upon &lt;a href=&quot;https:&#x2F;&#x2F;getoutline.com&#x2F;&quot;&gt;getoutline.com&lt;&#x2F;a&gt; since then I wanted to explore it! If you haven&#x27;t heard of it, Outline is a fantastic, open-source team knowledge base that&#x27;s designed to be fast, collaborative, and super easy to use. It is a powerful and cost-effective option right off the bat! Though, I wish for a better domain name 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;My main goals for this exploration:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Migrate our existing GitHub Wiki&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Publish part of the wiki as a public help site&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So, how did it go? Let&#x27;s dive in! 👇&lt;&#x2F;p&gt;
+&lt;p&gt;Minor Hurdle 1: Could not sign up with individual email. One needs corp SSO account such Google workspace&#x2F;Slack.&lt;&#x2F;p&gt;
+&lt;p&gt;Signed up. Cloned my github wiki repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Used chatgpt to write a script that imports all the content (markdown and images) to outline using it&#x27;s API.&lt;&#x2F;p&gt;
+&lt;p&gt;Minor hurdle 2: API has somewhat restrictive rate limiting for import which was then overcome with 60 sec sleep between the calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Imported as a collection. Import works and looks great.&lt;&#x2F;p&gt;
+&lt;p&gt;Figured out that &lt;code&gt;collection&lt;&#x2F;code&gt; can&#x27;t published (public) directly. A document can be published and it&#x27;s nested documents automatically be published.&lt;&#x2F;p&gt;
+&lt;p&gt;Modified the script for this and then published. Worked perfect!&lt;&#x2F;p&gt;
+&lt;p&gt;Now figuring out how to make certain links friendly. For example &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&lt;&#x2F;code&gt; to &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing&lt;&#x2F;code&gt; without the id suffix. &lt;a href=&quot;https:&#x2F;&#x2F;docs.getoutline.com&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&quot;&gt;Documentation&lt;&#x2F;a&gt; does say that it works but my guess it doesn&#x27;t.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;shon&#x2F;247004a6bfbba47fe2cccbfcdf6fc394&quot;&gt;script&lt;&#x2F;a&gt; if someone is interested&lt;&#x2F;p&gt;
+&lt;p&gt;Custom domain is available for about $240 per year, so I am skipping that. Also there is no option in the settings but it&#x27;s manual process based on support request. I decided to skip it.&lt;&#x2F;p&gt;
+&lt;p&gt;So far Outline experience has been positive! It&#x27;s a user-friendly, and highly capable platform for managing team knowledge. Great APIs too. If you&#x27;re looking for a powerful alternative to wikis&#x2F;notion especially if you&#x27;re on a budget, I highly recommend checking out &lt;a href=&quot;https:&#x2F;&#x2F;getoutline.com&#x2F;&quot;&gt;getoutline.com&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title></title>
         <published>2023-10-24T00:00:00+00:00</published>
