@@ -14,13 +14,17 @@ My main goals for this exploration:
 
 So, how did it go? Let's dive in! 👇
 
-Minor Hurdle 1: Could not sign up with individual email. One needs corp SSO account such Google workspace/Slack.
+## Minor Hurdle 1: Sign up
+
+Could not sign up with individual email. One needs corp SSO account such Google workspace/Slack.
 
 Signed up. Cloned my github wiki repository.
 
 Used chatgpt to write a script that imports all the content (markdown and images) to outline using it's API.
 
-Minor hurdle 2: API has somewhat restrictive rate limiting for import which was then overcome with 60 sec sleep between the calls.
+## Minor hurdle 2: Rate Limits
+
+API has somewhat restrictive rate limiting for import which was then overcome with 60 sec sleep between the calls.
 
 Imported as a collection. Import works and looks great.
 
