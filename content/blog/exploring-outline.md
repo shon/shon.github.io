@@ -39,4 +39,12 @@ Here is the [script](https://gist.github.com/shon/247004a6bfbba47fe2cccbfcdf6fc3
 Custom domain is available for about $240 per year, so I am skipping that. Also there is no option in the settings but it's manual process based on support request. I decided to skip it.
 
 
+## Conclusion
 So far Outline experience has been positive! It's a user-friendly, and highly capable platform for managing team knowledge. Great APIs too. If you're looking for a powerful alternative to wikis/notion especially if you're on a budget, I highly recommend checking out [getoutline.com](https://getoutline.com/)!
+
+
+## Update (Sept 20th, 2025)
+- Migrated and started using it in production.
+- One I miss is the ability of editing markdown files in your favorite editor (neovim in this case).
+I feel overall WYSIWYG approach makes a product more accessible but makes both read and write a bit harder as the interface would have be ready to handle both intents. Example: Does the user want to edit the link or click it as I am reading?
+
