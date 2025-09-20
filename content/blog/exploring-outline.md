@@ -1,16 +1,17 @@
 +++
-title = "Exploring Team Knowledge wiki Outline (getoutline.com)"
+title = "Exploring Outline (getoutline.com) for Team Knowledgebase"
 date = "2025-07-13"
 [taxonomies]
-tags = ['makrdown', 'wiki', 'knowledge-base']
+tags = ['makrdown', 'wiki', 'knowledgebase']
 +++
 
 Sometime back, I have stumbled upon [getoutline.com](https://getoutline.com/) since then I wanted to explore it! If you haven't heard of it, Outline is a fantastic, open-source team knowledge base that's designed to be fast, collaborative, and super easy to use. It is a powerful and cost-effective option right off the bat! Though, I wish for a better domain name 😉.
 
 My main goals for this exploration:
 
-* **Migrate our existing GitHub Wiki**
-* **Publish part of the wiki as a public help site**
+* Migrate our existing GitHub Wiki
+* Publish part of the wiki as a public help site
+* Try out a product with AI powered search/querying 
 
 So, how did it go? Let's dive in! 👇
 
@@ -54,10 +55,7 @@ For our internal Engineering knowledgebase, outline offers several key advantage
 
 5. Pricing: At a price of $10 per month for 10 users, it's a very affordable solution.
 
-These are the most compelling reasons for the switch. As we begin using the platform, we'll also be able to explore other features like better content organization, APIs, and advanced access controls.
-
-PS: Will send out invites to join outline.
-
+These were the most compelling reasons for the switch. As we begin using the platform, we'll also be able to explore other features like better content organization, APIs, and advanced access controls.
 
 ## Update (Sept 20th, 2025)
 - Migrated to outline for a week's trial. Team seems convinced.
