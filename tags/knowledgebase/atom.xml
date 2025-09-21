@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - knowledgebase</title>
+    <link rel="self" type="application/atom+xml" href="https://shon.github.io/tags/knowledgebase/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://shon.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-07-13T00:00:00+00:00</updated>
+    <id>https://shon.github.io/tags/knowledgebase/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Outline (getoutline.com) for Team Knowledgebase</title>
+        <published>2025-07-13T00:00:00+00:00</published>
+        <updated>2025-07-13T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/exploring-outline/"/>
+        <id>https://shon.github.io/blog/exploring-outline/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/exploring-outline/">&lt;p&gt;Sometime back, I have stumbled upon &lt;a href=&quot;https:&#x2F;&#x2F;getoutline.com&#x2F;&quot;&gt;getoutline.com&lt;&#x2F;a&gt; since then I wanted to explore it! If you haven&#x27;t heard of it, Outline is a fantastic, open-source team knowledge base that&#x27;s designed to be fast, collaborative, and super easy to use. It is a powerful and cost-effective option right off the bat! Though, I wish for a better domain name 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;My main goals for this exploration:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Migrate our existing GitHub Wiki&lt;&#x2F;li&gt;
+&lt;li&gt;Publish part of the wiki as a public help site&lt;&#x2F;li&gt;
+&lt;li&gt;Try out a product with AI powered search&#x2F;querying&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So, how did it go? Let&#x27;s dive in! 👇&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;minor-hurdle-1-sign-up&quot;&gt;Minor Hurdle 1: Sign up&lt;&#x2F;h2&gt;
+&lt;p&gt;Could not sign up with individual email. One needs corp SSO account such Google workspace&#x2F;Slack.&lt;&#x2F;p&gt;
+&lt;p&gt;Signed up. Cloned my github wiki repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Used chatgpt to write a script that imports all the content (markdown and images) to outline using it&#x27;s API.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;minor-hurdle-2-rate-limits&quot;&gt;Minor hurdle 2: Rate Limits&lt;&#x2F;h2&gt;
+&lt;p&gt;API has somewhat restrictive rate limiting for import which was then overcome with 60 sec sleep between the calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Imported as a collection. Import works and looks great.&lt;&#x2F;p&gt;
+&lt;p&gt;Figured out that &lt;code&gt;collection&lt;&#x2F;code&gt; can&#x27;t published (public) directly. A document can be published and it&#x27;s nested documents automatically be published.&lt;&#x2F;p&gt;
+&lt;p&gt;Modified the script for this and then published. Worked perfect!&lt;&#x2F;p&gt;
+&lt;p&gt;Now figuring out how to make certain links friendly. For example &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&lt;&#x2F;code&gt; to &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing&lt;&#x2F;code&gt; without the id suffix. &lt;a href=&quot;https:&#x2F;&#x2F;docs.getoutline.com&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&quot;&gt;Documentation&lt;&#x2F;a&gt; does say that it works but my guess it doesn&#x27;t.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;shon&#x2F;247004a6bfbba47fe2cccbfcdf6fc394&quot;&gt;script and usage instructions here&lt;&#x2F;a&gt; if someone is interested&lt;&#x2F;p&gt;
+&lt;p&gt;Custom domain is available for about $240 per year, so I am skipping that. Also there is no option in the settings but it&#x27;s manual process based on support request. I decided to skip it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;So far Outline experience has been positive! It&#x27;s a user-friendly, and highly capable platform for managing team knowledge. Great APIs too. It is a powerful alternative to wikis&#x2F;notion especially if you&#x27;re on a budget.&lt;&#x2F;p&gt;
+&lt;p&gt;For our internal Engineering knowledgebase, outline offers several key advantages&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Powerful Search: GitHub&#x27;s search functionality can be difficult. Outline&#x27;s search is better. Its built-in AI queries are particularly effective at understanding natural language questions and providing answers based on our existing documentation.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Intuitive Editor: Outline&#x27;s editor is far more capable and user-friendly. Its intuitive design and collaborative features make it easy for both developers and non-developers to contribute and update content.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Enhanced Collaboration: Outline supports real-time collaborative editing, which will be especially useful for updating complex deployment procedures and other shared tasks. It also has a native commenting system, making feedback and discussions more streamlined.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Flexible Sharing: We can selectively share documents publicly, a feature that will be handy for external-facing documentation.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Pricing: At a price of $10 per month for 10 users, it&#x27;s a very affordable solution.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These were the most compelling reasons for the switch. As we begin using the platform, we&#x27;ll also be able to explore other features like better content organization, APIs, and advanced access controls.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;issues-mostly-minor&quot;&gt;Issues (Mostly minor)&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;I miss the ability of editing markdown files in your favorite editor (neovim in my case).
+I feel WYSIWYG approach makes a product more accessible but makes both read and write a bit harder as the interface would have be ready to handle both intents.
+Example: Clicking a link while reading, sometimes open it for editing. Using space to pagedown is not possible. I feel more comfortable with an explicit edit button to enter edit mode.&lt;&#x2F;li&gt;
+&lt;li&gt;AI Query input box is not well designed for a larger prompt. It&#x27;s annoying I wish it autogrows as one types more text.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;update-sept-20th-2025&quot;&gt;Update (Sept 20th, 2025)&lt;&#x2F;h2&gt;
+&lt;p&gt;Successfully migrated all the content to outline. While the team seems convinced, I will give it a week for final decision.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
