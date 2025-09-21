@@ -35,7 +35,7 @@ Modified the script for this and then published. Worked perfect!
 
 Now figuring out how to make certain links friendly. For example `/s/guide/doc/sharing-LG2sGOLIpl` to `/s/guide/doc/sharing` without the id suffix. [Documentation](https://docs.getoutline.com/s/guide/doc/sharing-LG2sGOLIpl) does say that it works but my guess it doesn't.
 
-Here is the [script](https://gist.github.com/shon/247004a6bfbba47fe2cccbfcdf6fc394) if someone is interested
+Here is the [script and usage instructions here](https://gist.github.com/shon/247004a6bfbba47fe2cccbfcdf6fc394) if someone is interested
 
 Custom domain is available for about $240 per year, so I am skipping that. Also there is no option in the settings but it's manual process based on support request. I decided to skip it.
 
@@ -57,9 +57,11 @@ For our internal Engineering knowledgebase, outline offers several key advantage
 
 These were the most compelling reasons for the switch. As we begin using the platform, we'll also be able to explore other features like better content organization, APIs, and advanced access controls.
 
-## Update (Sept 20th, 2025)
-- Migrated to outline for a week's trial. Team seems convinced.
-- I miss the ability of editing markdown files in your favorite editor (neovim in my case).
+## Issues (Mostly minor)
+1. I miss the ability of editing markdown files in your favorite editor (neovim in my case).
 I feel WYSIWYG approach makes a product more accessible but makes both read and write a bit harder as the interface would have be ready to handle both intents. 
 Example: Clicking a link while reading, sometimes open it for editing. Using space to pagedown is not possible. I feel more comfortable with an explicit edit button to enter edit mode.
+2. AI Query input box is not well designed for a larger prompt. It's annoying I wish it autogrows as one types more text.
 
+## Update (Sept 20th, 2025)
+Successfully migrated all the content to outline. While the team seems convinced, I will give it a week for final decision.
