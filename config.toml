@@ -39,3 +39,11 @@ en = { name = " journal ", url = "/journal" }
 
 [[extra.header_nav]]
 en = { name = " blog", url = "/blog" }
+
+[[extra.social]]
+name = "github"
+url = "https://github.com/shon"
+
+[[extra.social]]
+name = "twitter"
+url = "https://twitter.com/shon_"
