@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Exploring Outline (getoutline.com) for Team Knowledgebase</title>
+
+
+
+<meta name="title" content="Exploring Outline (getoutline.com) for Team Knowledgebase">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/exploring-outline/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Exploring Outline (getoutline.com) for Team Knowledgebase">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/exploring-outline/">
+
+<meta property="twitter:title" content="Exploring Outline (getoutline.com) for Team Knowledgebase">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/exploring-outline/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">exploring-outline</span></div>
+<time datetime="2025-07-13">Published on: <span class="metaData">2025-07-13</span></time>
+
+<h1>Exploring Outline (getoutline.com) for Team Knowledgebase</h1>
+
+
+
+<p>As our <strong>Engineering team scales</strong>, I was looking for a solution that could replace the GitHub wiki with something more capable. Specifically, a tool that offers easy access/collaboration, robust search, and supports AI queries. I had stumbled upon <a rel="external" href="https://getoutline.com/">getoutline.com</a> sometime back, and have been eager to explore it since! If you haven't heard of it, <strong>Outline</strong> is a fantastic, open-source team knowledge base that’s designed to be fast, collaborative, and super easy to use. It's a powerful and cost-effective option right off the bat! Though, I do wish that they had a better domain name 😉.</p>
+<p>My main goals for this exploration:</p>
+<ul>
+<li>Migrate our existing <strong>GitHub Wiki</strong></li>
+<li>Publish part of the wiki as a <strong>public help site</strong></li>
+<li>Try out a product with <strong>AI-powered search/querying</strong></li>
+</ul>
+<p>So, how did it go? Let's dive in! 👇</p>
+<h2 id="minor-hurdle-1-sign-up">Minor Hurdle 1: Sign up</h2>
+<p>Could not sign up with an individual email. One needs a corporate SSO account such as Google workspace or Slack.</p>
+<p>Once signed up, I cloned my GitHub wiki repository.</p>
+<p>Used ChatGPT to write a script that imports all the content (markdown and images) to Outline using its API.</p>
+<h2 id="minor-hurdle-2-rate-limits">Minor Hurdle 2: Rate Limits</h2>
+<p>The API has somewhat restrictive <strong>rate limiting</strong> for import, which was then overcome with a 60-second sleep between the calls.</p>
+<p>Imported content as a collection. The import worked and looked great.</p>
+<p>I figured out that a <strong>collection</strong> cannot be published (made public) directly. However, a document can be published, and its nested documents are automatically published.</p>
+<p>I modified the script for this and then published the main document. It worked perfectly!</p>
+<p>I then looked into making certain links friendly. For example, changing <code>/s/guide/doc/sharing-LG2sGOLIpl</code> to <code>/s/guide/doc/sharing</code> without the ID suffix. The <a rel="external" href="https://docs.getoutline.com/s/guide/doc/sharing-LG2sGOLIpl">Documentation</a> suggests this works, but my testing indicates otherwise.</p>
+<p>Here is the <a rel="external" href="https://gist.github.com/shon/247004a6bfbba47fe2cccbfcdf6fc394">script and usage instructions here</a> if someone is interested.</p>
+<p>Custom domain is available for about $240 per year, so I am skipping that. Also, there is no option in the settings, but it's a manual process based on a support request. I decided to skip it.</p>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>So far, the Outline experience has been <strong>positive</strong>! It's a user-friendly and highly capable platform for managing team knowledge, with great APIs. It is a powerful alternative to wikis/Notion, especially if you're on a budget.</p>
+<p>For our internal Engineering knowledge base, Outline offers several key advantages:</p>
+<ol>
+<li><strong>Powerful Search:</strong> GitHub's native search functionality can be limiting. Outline's search is much better. Its built-in <strong>AI queries</strong> are particularly effective at understanding natural language questions and providing answers based on our existing documentation.</li>
+<li><strong>Intuitive Editor:</strong> Outline's editor is far more capable and user-friendly. Its intuitive design and collaborative features make it easy for both developers and non-developers to contribute and update content.</li>
+<li><strong>Enhanced Collaboration:</strong> Outline supports <strong>real-time collaborative editing</strong>, which will be especially useful for updating complex deployment procedures and other shared tasks. It also has a native commenting system, making feedback and discussions more streamlined.</li>
+<li><strong>Flexible Sharing:</strong> We can selectively share documents publicly, a feature that will be handy for external-facing documentation.</li>
+<li><strong>No Vendor Lock-in:</strong> Top-notch Markdown support for import/export helps.</li>
+<li><strong>Pricing:</strong> At a price of <strong>$10 per month for 10 users</strong>, it's a very affordable solution.</li>
+</ol>
+<p>These were the most compelling reasons for the switch. As we begin using the platform, we'll also be able to explore other features like better content organization, APIs, and advanced access controls.</p>
+<hr />
+<h2 id="issues-mostly-minor">Issues (Mostly minor)</h2>
+<ol>
+<li>
+<p><del>I miss the ability of editing markdown files in your favorite editor (neovim in my case).
+I feel the WYSIWYG approach makes a product more accessible but makes both read and write a bit harder as the interface would have to be ready to handle both intents.
+Example: Clicking a link while reading sometimes opens it for editing. Using space to pagedown is not possible. I feel more comfortable with an explicit edit button to enter edit mode.</del></p>
+<blockquote>
+<p><strong>Turns out that Outline has support for turning off edit+read mode</strong> or what they refer to as <strong><code>Separate Editing</code></strong>. That's cool.
+When enabled, documents have a separate editing mode by default instead of being always editable. This setting can be overridden by user preferences.</p>
+</blockquote>
+</li>
+<li>
+<p>AI Query input box is not well designed for a larger prompt. It's a little annoying; I wish it auto-grows as one types more text.</p>
+</li>
+</ol>
+<hr />
+<h2 id="update-sept-20th-2025">Update (Sept 20th, 2025)</h2>
+<p>Successfully migrated all the content to Outline. While the team seems convinced, I will give it a week for the final decision.</p>
+<h2 id="update-oct-9th-2025">Update (Oct 9th, 2025)</h2>
+<p>We are happy with the migration. They have a Slack integration which is quite helpful, especially for quick AI queries.</p>
+
+
+<p class="tagsData">
+  
+  
+  <a href="/tags/markdown">&#47;markdown&#47;</a>
+  
+  <a href="/tags/wiki">&#47;wiki&#47;</a>
+  
+  <a href="/tags/knowledgebase">&#47;knowledgebase&#47;</a>
+  
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

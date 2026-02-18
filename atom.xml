@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title></title>
+    <link rel="self" type="application/atom+xml" href="https://shon.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://shon.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-07-13T00:00:00+00:00</updated>
+    <id>https://shon.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Outline (getoutline.com) for Team Knowledgebase</title>
+        <published>2025-07-13T00:00:00+00:00</published>
+        <updated>2025-07-13T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/exploring-outline/"/>
+        <id>https://shon.github.io/blog/exploring-outline/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/exploring-outline/">&lt;p&gt;As our &lt;strong&gt;Engineering team scales&lt;&#x2F;strong&gt;, I was looking for a solution that could replace the GitHub wiki with something more capable. Specifically, a tool that offers easy access&#x2F;collaboration, robust search, and supports AI queries. I had stumbled upon &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;getoutline.com&#x2F;&quot;&gt;getoutline.com&lt;&#x2F;a&gt; sometime back, and have been eager to explore it since! If you haven&#x27;t heard of it, &lt;strong&gt;Outline&lt;&#x2F;strong&gt; is a fantastic, open-source team knowledge base that’s designed to be fast, collaborative, and super easy to use. It&#x27;s a powerful and cost-effective option right off the bat! Though, I do wish that they had a better domain name 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;My main goals for this exploration:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Migrate our existing &lt;strong&gt;GitHub Wiki&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Publish part of the wiki as a &lt;strong&gt;public help site&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Try out a product with &lt;strong&gt;AI-powered search&#x2F;querying&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So, how did it go? Let&#x27;s dive in! 👇&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;minor-hurdle-1-sign-up&quot;&gt;Minor Hurdle 1: Sign up&lt;&#x2F;h2&gt;
+&lt;p&gt;Could not sign up with an individual email. One needs a corporate SSO account such as Google workspace or Slack.&lt;&#x2F;p&gt;
+&lt;p&gt;Once signed up, I cloned my GitHub wiki repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Used ChatGPT to write a script that imports all the content (markdown and images) to Outline using its API.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;minor-hurdle-2-rate-limits&quot;&gt;Minor Hurdle 2: Rate Limits&lt;&#x2F;h2&gt;
+&lt;p&gt;The API has somewhat restrictive &lt;strong&gt;rate limiting&lt;&#x2F;strong&gt; for import, which was then overcome with a 60-second sleep between the calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Imported content as a collection. The import worked and looked great.&lt;&#x2F;p&gt;
+&lt;p&gt;I figured out that a &lt;strong&gt;collection&lt;&#x2F;strong&gt; cannot be published (made public) directly. However, a document can be published, and its nested documents are automatically published.&lt;&#x2F;p&gt;
+&lt;p&gt;I modified the script for this and then published the main document. It worked perfectly!&lt;&#x2F;p&gt;
+&lt;p&gt;I then looked into making certain links friendly. For example, changing &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&lt;&#x2F;code&gt; to &lt;code&gt;&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing&lt;&#x2F;code&gt; without the ID suffix. The &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.getoutline.com&#x2F;s&#x2F;guide&#x2F;doc&#x2F;sharing-LG2sGOLIpl&quot;&gt;Documentation&lt;&#x2F;a&gt; suggests this works, but my testing indicates otherwise.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;shon&#x2F;247004a6bfbba47fe2cccbfcdf6fc394&quot;&gt;script and usage instructions here&lt;&#x2F;a&gt; if someone is interested.&lt;&#x2F;p&gt;
+&lt;p&gt;Custom domain is available for about $240 per year, so I am skipping that. Also, there is no option in the settings, but it&#x27;s a manual process based on a support request. I decided to skip it.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;So far, the Outline experience has been &lt;strong&gt;positive&lt;&#x2F;strong&gt;! It&#x27;s a user-friendly and highly capable platform for managing team knowledge, with great APIs. It is a powerful alternative to wikis&#x2F;Notion, especially if you&#x27;re on a budget.&lt;&#x2F;p&gt;
+&lt;p&gt;For our internal Engineering knowledge base, Outline offers several key advantages:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Powerful Search:&lt;&#x2F;strong&gt; GitHub&#x27;s native search functionality can be limiting. Outline&#x27;s search is much better. Its built-in &lt;strong&gt;AI queries&lt;&#x2F;strong&gt; are particularly effective at understanding natural language questions and providing answers based on our existing documentation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Intuitive Editor:&lt;&#x2F;strong&gt; Outline&#x27;s editor is far more capable and user-friendly. Its intuitive design and collaborative features make it easy for both developers and non-developers to contribute and update content.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Collaboration:&lt;&#x2F;strong&gt; Outline supports &lt;strong&gt;real-time collaborative editing&lt;&#x2F;strong&gt;, which will be especially useful for updating complex deployment procedures and other shared tasks. It also has a native commenting system, making feedback and discussions more streamlined.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Flexible Sharing:&lt;&#x2F;strong&gt; We can selectively share documents publicly, a feature that will be handy for external-facing documentation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;No Vendor Lock-in:&lt;&#x2F;strong&gt; Top-notch Markdown support for import&#x2F;export helps.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Pricing:&lt;&#x2F;strong&gt; At a price of &lt;strong&gt;$10 per month for 10 users&lt;&#x2F;strong&gt;, it&#x27;s a very affordable solution.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These were the most compelling reasons for the switch. As we begin using the platform, we&#x27;ll also be able to explore other features like better content organization, APIs, and advanced access controls.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;issues-mostly-minor&quot;&gt;Issues (Mostly minor)&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;I miss the ability of editing markdown files in your favorite editor (neovim in my case).
+I feel the WYSIWYG approach makes a product more accessible but makes both read and write a bit harder as the interface would have to be ready to handle both intents.
+Example: Clicking a link while reading sometimes opens it for editing. Using space to pagedown is not possible. I feel more comfortable with an explicit edit button to enter edit mode.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Turns out that Outline has support for turning off edit+read mode&lt;&#x2F;strong&gt; or what they refer to as &lt;strong&gt;&lt;code&gt;Separate Editing&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;. That&#x27;s cool.
+When enabled, documents have a separate editing mode by default instead of being always editable. This setting can be overridden by user preferences.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;AI Query input box is not well designed for a larger prompt. It&#x27;s a little annoying; I wish it auto-grows as one types more text.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;update-sept-20th-2025&quot;&gt;Update (Sept 20th, 2025)&lt;&#x2F;h2&gt;
+&lt;p&gt;Successfully migrated all the content to Outline. While the team seems convinced, I will give it a week for the final decision.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;update-oct-9th-2025&quot;&gt;Update (Oct 9th, 2025)&lt;&#x2F;h2&gt;
+&lt;p&gt;We are happy with the migration. They have a Slack integration which is quite helpful, especially for quick AI queries.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title></title>
+        <published>2023-10-24T00:00:00+00:00</published>
+        <updated>2023-10-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/journal/2023-10-24/"/>
+        <id>https://shon.github.io/journal/2023-10-24/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/journal/2023-10-24/">&lt;p&gt;Very interesting app and beautiful interface, can&#x27;t wait to try this app -&amp;gt; &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=me.audiodiary.audiodiary&amp;amp;pcampaignid=web_share&quot;&gt;Audio Diary&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Zola</title>
+        <published>2023-10-20T00:00:00+00:00</published>
+        <updated>2023-10-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/zola/"/>
+        <id>https://shon.github.io/blog/zola/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/zola/">&lt;p&gt;This site is powered by excellent &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Some history&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;My blogging journey began with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;getpelican.com&#x2F;&quot;&gt;Pelican&lt;&#x2F;a&gt;, which was pretty neat until I crossed paths with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vladris&#x2F;tinkerer&quot;&gt;Tinkerer&lt;&#x2F;a&gt;. I absolutely loved Tinkerer. I chose RestructuredText as the text markup, which was quiet popular that time among the Pythonistas during that era.&lt;&#x2F;p&gt;
+&lt;p&gt;My blogging saga however took a backseat, with only sporadic ramblings on my &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;shon.stck.me&quot;&gt;stck&lt;&#x2F;a&gt; account and for &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;engineering.stck.me&quot;&gt;stck engg&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Earlier this year, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;ansht.me&quot;&gt;ansht.me&lt;&#x2F;a&gt; inspired me to revive this site again. I flirted with the idea of writing my own SSG. On realizing that even creating own SSG could have been ideal, it would be reinventing the wheel when there are already many great tools available.
+Existing tool Tinkerer is now retired. Tinkerer&#x27;s spiritual successor Baku isn&#x27;t ready yet. So I considered top tools Jekyll, Hugo and Zola.&lt;&#x2F;p&gt;
+&lt;p&gt;Jekyll&#x27;s is great and integrated with github but I wanted something easier to setup locally. So I tried Hugo and Zola. I could get Zola running in no time and loved it&#x27;s simplicity.&lt;&#x2F;p&gt;
+&lt;p&gt;I wrote a script to port RestructuredText files to Markdown and restructure the source for Zola.
+Among Zola themes, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Speyll&#x2F;anemone&quot;&gt;Anemone&lt;&#x2F;a&gt; theme is fairly close to the minimalist style I was looking for.
+Also spent some time customizing Zola for my requirement and taste. One of the customization is using &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;lp&#x2F;mono&#x2F;&quot;&gt;JetBrains Mono font&lt;&#x2F;a&gt; (inspiration: https:&#x2F;&#x2F;ansht.me). So all in all, the outcome is a rejuvenated blog space that felt just right, mirroring the simplicity and flexibility that I longed for.&lt;&#x2F;p&gt;
+&lt;p&gt;So here’s to many more blog posts, code snippets, and the continuous quest for the perfect blogging setup!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title></title>
+        <published>2023-10-19T00:00:00+00:00</published>
+        <updated>2023-10-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/journal/2023-10-19/"/>
+        <id>https://shon.github.io/journal/2023-10-19/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/journal/2023-10-19/">&lt;p&gt;Microblogging is fascinating.&lt;&#x2F;p&gt;
+&lt;p&gt;I love what Twitter has done and is doing. Deeply admire Jack Dorsey and Elon.&lt;&#x2F;p&gt;
+&lt;p&gt;As much as I love Twitter, Rs. 650&#x2F;mo for premium subscription would be too much for me. I wish there was a more affordable plan.&lt;&#x2F;p&gt;
+&lt;p&gt;I always wanted to have some form of microblogging in the products that I worked on in the past. That never really happened. But thatnks to Zola, now that my blog is alive again, I want to experiement with journal&#x2F;microblogging system. So I spent a few minutes this morning and setup this quick microblog.&lt;&#x2F;p&gt;
+&lt;p&gt;One downside of such microblog setups is no interactivity. Will think of comments a bit later.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;No Titles (If you compare with usual blog posts)&lt;&#x2F;li&gt;
+&lt;li&gt;Date as permalink&lt;&#x2F;li&gt;
+&lt;li&gt;New journal tagging - So that it&#x27;s easy to just list journal posts by journal tags&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title></title>
+        <published>2023-10-18T00:00:00+00:00</published>
+        <updated>2023-10-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/journal/2023-10-18/"/>
+        <id>https://shon.github.io/journal/2023-10-18/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/journal/2023-10-18/">&lt;p&gt;Hello Microblog &#x2F; Journal &#x2F; Short Notes&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Postgres Array vs Join benchmark</title>
+        <published>2015-12-21T00:00:00+00:00</published>
+        <updated>2015-12-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/postgres-array-performance/"/>
+        <id>https://shon.github.io/blog/postgres-array-performance/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/postgres-array-performance/">&lt;p&gt;Here is little experiment to measure postgresql array&#x27;s performance.
+For the example problem let us take blog posts and tags.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;join-approach&quot;&gt;Join approach&lt;&#x2F;h2&gt;
+&lt;p&gt;This is perhaps more common approach to model posts and tags. So let&#x27;s
+define model. Here I am using excellent
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;peewee.readthedocs.org&quot;&gt;Peewee&lt;&#x2F;a&gt;. So we have three tables Post,
+Tag and PostTag. PostTag table maintains all post to tag records.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; CharField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt;default&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;example title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Tag&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; CharField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; PostTag&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    post&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ForeignKeyField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Post&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tag&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ForeignKeyField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Tag&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;array&quot;&gt;Array&lt;&#x2F;h2&gt;
+&lt;p&gt;Postgresql supports array columns. In this model array field Post.tags
+shall be used to maintain post-tag entries instead of PostTag model.
+Even &lt;em&gt;Tag&lt;&#x2F;em&gt; is not needed in this case.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; CharField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt;default&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;example title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ArrayField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;CharField&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt; default&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt; index&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;True&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;complete-code&quot;&gt;Complete code&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;import&lt;&#x2F;span&gt;&lt;span&gt; random&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; tqdm&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span&gt; tqdm&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; peewee&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; *&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; myapp&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span&gt; db&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; playhouse&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;postgres_ext&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span&gt; ArrayField&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; ForeignKeyField&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; BaseModel&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;Model&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Meta&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        database&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; db&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        only_save_dirty&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; True&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; CharField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt;default&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;example title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ArrayField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;CharField&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt; default&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt; index&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;True&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Tag&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; CharField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; PostTag&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;BaseModel&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    post&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ForeignKeyField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Post&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tag&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; ForeignKeyField&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Tag&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; setup&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    no_of_posts&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 25000&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    no_of_tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 10000&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tags_per_post&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 15&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span&gt; t&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;PostTag&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; Tag&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        if&lt;&#x2F;span&gt;&lt;span&gt; t&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;table_exists&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            t&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;drop_table&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span&gt; t&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;Tag&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; PostTag&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        t&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;create_table&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tag-&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; i&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; for&lt;&#x2F;span&gt;&lt;span&gt; i&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; no_of_tags&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Tag&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;insert_many&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;tags&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;execute&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    posts&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;id&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt; i&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tag-&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; j&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; for&lt;&#x2F;span&gt;&lt;span&gt; j&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; random&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;sample&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; no_of_tags&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; tags_per_post&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;             for&lt;&#x2F;span&gt;&lt;span&gt; i&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; no_of_posts&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Post&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;insert_many&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;posts&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;execute&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span&gt; post&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; tqdm&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;posts&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        post_id&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; post&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;id&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        post_tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;post&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt; post_id&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tag&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt; tag&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;split&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; for&lt;&#x2F;span&gt;&lt;span&gt; tag&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; post&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        PostTag&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;insert_many&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;post_tags&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;execute&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;    print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Total posts: &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Total tags: &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Tags per post: &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;no_of_posts&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; no_of_tags&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; tags_per_post&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; test_join&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; =&amp;gt; SELECT Count(post.id) FROM post INNER JOIN posttag ON (post.id = posttag.post_id) \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    WHERE (posttag.tag_id = 8);&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;select&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;PostTag&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Tag&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;where&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Tag&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;id&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; ==&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;count&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; test_array&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; =&amp;gt; SELECT Count(&amp;quot;id&amp;quot;) FROM post WHERE tags @&amp;gt; &amp;#39;{tag-8}&amp;#39;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span&gt; Post&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;select&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;where&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Post&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;tags&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;contains&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;tag-8&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;count&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Needless to say selecting tags for a article would be faster as we are
+elinimating the joins. But it would be interesting to see that how
+finding articles for given tag will perform.&lt;&#x2F;p&gt;
+&lt;p&gt;And here are the numbers on my machine (Mac Air Ubuntu 15.10 Python
+2.7.9).&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; python&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; bench.py&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; setup&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;Total&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; posts:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 25000&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;Total&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; tags:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 1000&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;Tags&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; per&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; post:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 15&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; python&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;mtimeit&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;import bench&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;bench.test_join()&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;100&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; loops,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; best&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; of&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; 3:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 8.32&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; msec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; per&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; loop&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; python&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;mtimeit&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;import bench&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;bench.test_array()&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;1000&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; loops,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; best&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; of&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; 3:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 869&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; usec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; per&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; loop&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Android Apps I use</title>
+        <published>2015-12-04T00:00:00+00:00</published>
+        <updated>2015-12-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/android-apps-i-use/"/>
+        <id>https://shon.github.io/blog/android-apps-i-use/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/android-apps-i-use/">&lt;p&gt;These are android apps that I find super useful. Ofcourse the list
+excludes most popular ones like gmail and facebook. These are somewhat
+less known apps (or now getting popular).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Launcher&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;aviate&quot;&gt;Aviate&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;3 this elegant launcher by Yahoo. It&#x27;s simple and smart.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.tul.aviate&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.tul.aviate&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Travel&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;my-tracks&quot;&gt;My Tracks&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Helps me track my hikes and provides interesting stats. This one is
+ny Google&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.google.android.maps.mytracks&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.google.android.maps.mytracks&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Productivity&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;renotify&quot;&gt;Renotify&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Sticky notifications&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.liamlang.renotify&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.liamlang.renotify&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;General&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;splitwise&quot;&gt;Splitwise&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Now it&#x27;s popular. So simple to use. Great reference for designing
+user experience&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.Splitwise.SplitwiseMobile&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.Splitwise.SplitwiseMobile&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Heath&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;twilight&quot;&gt;Twilight&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;For your eyes { &amp;lt;o&amp;gt; &amp;lt;o&amp;gt; }&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.urbandroid.lux&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.urbandroid.lux&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;sleepytime&quot;&gt;SleepyTime&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Often I set sleep cycles just before I go to sleep&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.icechen1.sleepytime&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.icechen1.sleepytime&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Reading&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;materialistic&quot;&gt;Materialistic&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HackerNews reader. Tried a few but this one is the best so far&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=io.github.hidroh.materialistic&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=io.github.hidroh.materialistic&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;pocket&quot;&gt;Pocket&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Apart from great reading experience for longer posts, it can read
+out the articles for you&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.ideashower.readitlater.pro&amp;amp;hl=en&quot;&gt;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.ideashower.readitlater.pro&amp;amp;hl=en&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Crapbali</title>
+        <published>2015-08-01T00:00:00+00:00</published>
+        <updated>2015-08-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/crapbali/"/>
+        <id>https://shon.github.io/blog/crapbali/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/crapbali/">&lt;p&gt;So Friday afternoon we decided to watch Bahubali. We are a bunch of
+geeks who code for living.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;bahubali.jpg&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Tickets were a bit expensive but we were really curious, reading with
+positive reviews all over (five stars and all). The expectation was
+watching desi Lord of the rings equivalent. So winning argument in
+favour of watching Bahubali was &quot;if they have sepnd 250cr making it, it
+should be worth spending extra 150 Rs. to watch it&quot;. Argument is sily
+but fine, everyone really wanted to watch it. So we applied 20% discount
+offer on bookmyshow and booked the tickets.&lt;&#x2F;p&gt;
+&lt;p&gt;We reached in time. And it began. Waterfall scenes were mesmerizing.
+Initial few minutes we were convinced that Bahubali is no ordinary boy
+.. he has great powers. Fine. He finds the mask and he decides to reach
+top. Fine. As he reached top of the waterfall and the love story story
+begins&lt;&#x2F;p&gt;
+&lt;p&gt;Oh man .. from then until the interval it was crap [Crapbali]. Tatoo
+in flowing water, the heroine leading warriors and then convincing the
+tribe leader to have Bahubali lead them .. all so unconvincing even with
+creative freedom. We were looking at each other with the feeling what
+crap are we watching.&lt;&#x2F;p&gt;
+&lt;p&gt;Alright post interval Bada Bahubali appears and then things were bit
+more interesting. Battle scene was epic and most of did enjoy it. But it
+wasn&#x27;t without flaws either. How come Rani maa could watch such huge
+battlefield like she is in some balcony watching a football or a cricket
+match .. and many more such logical questions.&lt;&#x2F;p&gt;
+&lt;p&gt;Then as we were walking back to office, we stopped at a cafe and then
+discussions started&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PD: Arey, me and Pi have a question for you&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ME: Ok..&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pi: Who was the old lady who carried baby Bahubali through stream&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ME: Umm.. had same question in my mind but let me think&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;RR: See Rani maa was not Bahubali&#x27;s real mother she was Duggubati&#x27;s
+mother, right?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ME: You mean Bada Bahubali..&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pi: What about Devsena&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;...
+...&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;There were more discussions and debates as we ordered some food. Two
+things that everyone agreed on&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;First half was utter crap&lt;&#x2F;li&gt;
+&lt;li&gt;Second half was entertaining for sure but with many flaws&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;best-scene-in-the-movie&quot;&gt;Best scene in the movie&lt;&#x2F;h2&gt;
+&lt;p&gt;Kattappa doing &lt;em&gt;Shahrukh Khan&lt;&#x2F;em&gt; in a scene where he runs to
+kill &lt;em&gt;chota&lt;&#x2F;em&gt; Bahubali, changes his mind midway as he running and slides&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;They could have done better job with dialogues. I mean&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Mera vachan hi hai shaasan&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;wait .. what?&lt;&#x2F;p&gt;
+&lt;p&gt;Songs are forgettable, not sure why are they even there.&lt;&#x2F;p&gt;
+&lt;p&gt;Good movies stay in it&#x27;s genre. For example many
+Govinda&#x2F;Jim carry comedy movies do try to be serious. They often do one
+thing and do it well. Epic&#x2F;Superhero&#x2F;Disaster movies has great graphics
+but most of the times do not try to be stupid love story.&lt;&#x2F;p&gt;
+&lt;p&gt;Bahubali appeared to be intense historical fiction filled with struggle
+for power, battles, politics. Sure there is place for tender love and
+human relations provided they are convincing. You can&#x27;t turn on stupid
+mode for an hour long love story and then switch serious mode when
+second half begins.&lt;&#x2F;p&gt;
+&lt;p&gt;Bahubali is big budget movie so there was no lack of resources to make a
+great movie. Still you can&#x27;t help but get the feeling that the epic
+battle scene is the &lt;strong&gt;only&lt;&#x2F;strong&gt; (technology) achievement but other than
+that movie just disappoints on all fronts.&lt;&#x2F;p&gt;
+&lt;p&gt;And if you ask me to rate the movie... well two stars or may be just
+&lt;strong&gt;one star&lt;&#x2F;strong&gt; .&lt;&#x2F;p&gt;
+&lt;p&gt;Also read &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;wogma.com&#x2F;movie&#x2F;bahubali-review&#x2F;&quot;&gt;Wogma&#x27;s review&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Namecheap to AWS Route53 DNS Migration story</title>
+        <published>2014-12-21T00:00:00+00:00</published>
+        <updated>2014-12-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/dns-migration-story/"/>
+        <id>https://shon.github.io/blog/dns-migration-story/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/dns-migration-story/">&lt;p&gt;System administration is not my job but then sometimes I need to wear that hat to help the team. Here is how I managed DNS migration from Namecheap to AWS Route53.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;get-the-zone-file&quot;&gt;Get the Zone file&lt;&#x2F;h2&gt;
+&lt;p&gt;Namecheap support was kind enough to send me zone file when I requested for one.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;format-the-zone-file&quot;&gt;Format the zone file&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove whitespeces in the beginning of all lines in zone file&lt;&#x2F;li&gt;
+&lt;li&gt;Add below text as first line of zone file&lt;&#x2F;li&gt;
+&lt;li&gt;Make sure quote all TXT record values&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;code&gt;@ORIGIN example.com&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Install cli53&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;pip install cli53&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zone-export&quot;&gt;Zone export&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;cli53 create example.com&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;cli53 import example.com --file example.com.zone&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;verify&quot;&gt;Verify&lt;&#x2F;h2&gt;
+&lt;p&gt;Find out your name server. Logon to AWS Route 53 console and find out NS entries. Pick one. In my case it was ns-1261.awsdns-29.org&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;pip&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; install&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;    git+http:&#x2F;&#x2F;github.com&#x2F;joemiller&#x2F;dns_compare.git#egg=dns_compare&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;dns_compare&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;z&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-file&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com.zone&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;    -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-server&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 8.8.8.8&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;t&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; false&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;dns_compare&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;z&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-file&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com.zone&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;    -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-server&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; ns-1261.awsdns-29.org&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; use your aws ns&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; -- OR --- use -t to ignore ttl differences&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;dns_compare&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;z&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-file&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; example.com.zone&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;    -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-server&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; ns-1261.awsdns-29.org&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;t&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; false&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;finally&quot;&gt;Finally&lt;&#x2F;h2&gt;
+&lt;p&gt;Note: &lt;strong&gt;Steps below will cause some downtime (number of hours)&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Go to namecheap’s “Transfer DNS to Webhost” page for your domain. Add new name servers. Save.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;watch dig -t ANY @8.8.8.8 example.com&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>UI Testing and BDD</title>
+        <published>2014-06-19T00:00:00+00:00</published>
+        <updated>2014-06-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/ui-testing-and-bdd/"/>
+        <id>https://shon.github.io/blog/ui-testing-and-bdd/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/ui-testing-and-bdd/">&lt;p&gt;Recently I had an opportunity to automate UI testing of the web
+application we have developed. So I found this excellent UI testing
+framework &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;splinter.cobrateam.info&#x2F;&quot;&gt;Splinter&lt;&#x2F;a&gt;. It being written
+in Python I was instantly confortable.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; From Splinter&amp;#39;s website&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; splinter&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span&gt; Browser&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; with&lt;&#x2F;span&gt;&lt;span&gt; Browser&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; as&lt;&#x2F;span&gt;&lt;span&gt; browser&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     url&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;http:&#x2F;&#x2F;www.google.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     browser&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;visit&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;url&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     browser&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;fill&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;q&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;splinter python acceptance testing&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     button&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; browser&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;find_by_name&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;btnG&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     button&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;click&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;     if&lt;&#x2F;span&gt;&lt;span&gt; browser&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;is_text_present&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;splinter.cobrateam.info&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;         print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Yes, the official website was found!&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;     else&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;         print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;No, it wasn&amp;#39;t found... We need to improve&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ah well sweet. It supports multiple webdrivers including remote. So
+it&#x27;s possible to integrate it with &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;saucelabs.com&quot;&gt;saucelabs&lt;&#x2F;a&gt;
+which makes it possible to test on web browsers which are not on your
+dev box.&lt;&#x2F;p&gt;
+&lt;p&gt;Also that you have access to live browser session in Python makes it
+even more pleasant.&lt;&#x2F;p&gt;
+&lt;p&gt;I happened to read on BDD or (Behavior-driven development) and then soon
+stumbled upon &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;pythonhosted.org&#x2F;behave&#x2F;&quot;&gt;behave&lt;&#x2F;a&gt;. It&#x27;s good
+idea to use it for testing as it provides nice seperation in test cases
+implementation and test cases. It uses &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;pythonhosted.org&#x2F;behave&#x2F;philosophy.html#the-gherkin-language&quot;&gt;The Gherkin
+language&lt;&#x2F;a&gt;
+to describe testing scenarios.&lt;&#x2F;p&gt;
+&lt;p&gt;Something like below which even non tech person in your team can write&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;gherkin&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;Feature&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; SEO Test&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    Scenario&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; Search Google for Splinter&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        When &lt;&#x2F;span&gt;&lt;span&gt;I visit &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;http:&#x2F;&#x2F;google.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        And &lt;&#x2F;span&gt;&lt;span&gt;I fill in &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;q&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; with &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Splinter Python&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        And &lt;&#x2F;span&gt;&lt;span&gt;I press &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;btnG&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        Then &lt;&#x2F;span&gt;&lt;span&gt;I should see &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;splinter.cobrateam&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; within 5 seconds &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    Scenario&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; Search Google for Shekhar&amp;#39;s Blog &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;        # would fail&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        When &lt;&#x2F;span&gt;&lt;span&gt;I visit &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;http:&#x2F;&#x2F;google.com&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        And &lt;&#x2F;span&gt;&lt;span&gt;I fill in &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;q&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; with &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Shekhar Tiwatne&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        And &lt;&#x2F;span&gt;&lt;span&gt;I press &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;btnG&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        Then &lt;&#x2F;span&gt;&lt;span&gt;I should see &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;shon.github.io&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; within 5 seconds &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;environment-setup&quot;&gt;Environment Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;To make things easier&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;pip&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; install&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-upgrade&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; splinter&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; behave&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; behaving&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; features&#x2F;steps&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;touch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; features&#x2F;steps&#x2F;__init__.py&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;wget&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; https:&#x2F;&#x2F;gist.githubusercontent.com&#x2F;shon&#x2F;90ac6af750b575cde050&#x2F;raw&#x2F;e89262dd5f722dcc1d83d37c011283330c31e9fc&#x2F;environment.py&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;mv&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; environment.py&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; features&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create features&#x2F;steps&#x2F;everything.py with below code. It essentially
+imports steps implementation.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; behave&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span&gt; step&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; behaving&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;web&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;steps&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; *&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; behaving&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;personas&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;steps&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; import&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; *&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;run&quot;&gt;Run&lt;&#x2F;h2&gt;
+&lt;p&gt;We are ready. Simply execute &lt;em&gt;behave&lt;&#x2F;em&gt; and see firefox window executing
+all tests for you. You should see one test passed and one failed as
+intended.&lt;&#x2F;p&gt;
+&lt;p&gt;::&lt;&#x2F;p&gt;
+&lt;p&gt;:   behave&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;behave.png&quot; alt=&quot;Bingo!&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-next&quot;&gt;What next&lt;&#x2F;h2&gt;
+&lt;p&gt;Read how to implement steps (grammer)
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;pythonhosted.org&#x2F;behave&#x2F;tutorial.html&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>JSON-RPC</title>
+        <published>2013-01-13T00:00:00+00:00</published>
+        <updated>2013-01-13T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/jsonrpc/"/>
+        <id>https://shon.github.io/blog/jsonrpc/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/jsonrpc/">&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;json-rpc.org&#x2F;&quot;&gt;JSON-RPC&lt;&#x2F;a&gt; protocol has got much less attention
+than it deserves. It is so elegant and simple. Our experience of working
+on JSON-RPC was plesant.&lt;&#x2F;p&gt;
+&lt;p&gt;For uninitiated JSON-RPC is lightweight remote procedure call protocol
+similar to XML-RPC. I find it incredibly useful in building easy to
+maintain applications.&lt;&#x2F;p&gt;
+&lt;p&gt;We effectively used JSONRPC in our project &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;cowoop.net&#x2F;&quot;&gt;Cowoop&lt;&#x2F;a&gt;
+to make it easy to debug application.&lt;&#x2F;p&gt;
+&lt;p&gt;It is often seen that unless it is an open source application, in the
+design phase very little attention is paid towards maintainablity of the
+application. With many no so clearly seperated layers it makes it
+increasingly difficult to debug. This makes bug fixing painful and no
+fun process for those who are working on it. And further these in most
+cases are not the architects who designed the application. Architect is
+either moved on to design some other project or is working on next
+release.&lt;&#x2F;p&gt;
+&lt;p&gt;Lets directly jump to example code. So here is my python function.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; add&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;a&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; b&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;        return&lt;&#x2F;span&gt;&lt;span&gt; a&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; +&lt;&#x2F;span&gt;&lt;span&gt; b&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; add&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 2&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;3&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Project exposes above function [add]{.title-ref} using JSON-RPC. We use
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;flask.pocoo.org&#x2F;&quot;&gt;Flask&lt;&#x2F;a&gt; +
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;packages.python.org&#x2F;jsonrpc2&quot;&gt;jsonrpc2&lt;&#x2F;a&gt; to serve JSONRPC over
+http.&lt;&#x2F;p&gt;
+&lt;p&gt;Let us see how does jquery JSONRPC plugin calls this API.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;001.png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Result&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;003.png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;jsonrpc function that you see in above screenshot is part of our js
+client library. Really it is a a few lines wrapper on top of &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;datagraph&#x2F;jquery-jsonrpc&quot;&gt;jquery
+jsonrpc plugin&lt;&#x2F;a&gt; function
+jsonRPC.request()&lt;&#x2F;p&gt;
+&lt;p&gt;Do you think JSONRPC2 is fairly successful in helping create a
+maintainable application?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;challenges&quot;&gt;Challenges&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;&#x2F;h3&gt;
+&lt;p&gt;There is no word in JSONRPC2 specification about Authentication yet (not
+a complaint) . But I think it is necessary for further success of
+JSONRPC. It&#x27;s possible to use http auth but not many would prefer it so
+I see people implementing two type of solutions.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;authentication-using-cookies&quot;&gt;Authentication | Using cookies&lt;&#x2F;h4&gt;
+&lt;p&gt;Session id is kept in authcookie and sent&#x2F;validated with every http
+request.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;authentication-using-special-parameters-in-rpc-call&quot;&gt;Authentication | Using special parameters in rpc call&lt;&#x2F;h4&gt;
+&lt;p&gt;Session id is passed as special parameter in every rpc call. For eg.
+above add function may be invoked like below&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;add&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 2&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E36209, #FFAB70);&quot;&gt; _session&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;somesessionid&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Choosing MVC(MVVM) library for Cowspa</title>
+        <published>2012-04-04T00:00:00+00:00</published>
+        <updated>2012-04-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/choosing-mvvc-library-for-cowspa/"/>
+        <id>https://shon.github.io/blog/choosing-mvvc-library-for-cowspa/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/choosing-mvvc-library-for-cowspa/">&lt;p&gt;In the initial phase of this open source project
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Cowoop&#x2F;cowspa3&quot;&gt;cowspa&lt;&#x2F;a&gt; developed by
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;cowoop.net&#x2F;&quot;&gt;Cowoop&lt;&#x2F;a&gt;, we had chosen knockout.js as important
+client side component. However during the implementation team bowed to
+the delivery pressure and couldn&#x27;t get a chance to learn, explore and
+use knockout or any other MVC library. Certainly a mistake! Ultimately
+we have to paid the price of having to maintain really complex pure
+jquery based bug-prone codebase. However at this stage, I decided to
+rectify this and started looking for different client side templating
+and MVC libraries. Essentially the library that binds the templates to
+data and can auto-update as the data changes. I was stunned by choice of
+libraries&#x2F;frameworks available. There are just too many of them. Ones I
+liked are&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;knockoutjs.com&#x2F;&quot;&gt;knockout.js&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;angularjs.org&#x2F;&quot;&gt;angular.js&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;emberjs.com&#x2F;&quot;&gt;Ember.js&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;agilityjs.com&#x2F;&quot;&gt;Agility&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;kmalakoff.github.com&#x2F;knockback&#x2F;&quot;&gt;knockback&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Ember is perhaps the best one even according to this
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;codebrief.com&#x2F;2012&#x2F;01&#x2F;the-top-10-javascript-mvc-frameworks-reviewed&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;.
+Angular is very capable and is sheer magic. And well there are many more
+like excellent backbone.js. We finally narrowed down two options:
+Knockout and Agility. Agility, I liked most, mainly because of it&#x27;s
+clear syntax and looked like producing very maintainable code. So it was
+really tempting to go for it. But for us at this point of time knockout
+scored better at mainly with it&#x27;s project maturity (age). Agility is at
+0.1.2 at this moment and knockout 2.0.0 and hence knockout enjoys much
+bigger community.&lt;&#x2F;p&gt;
+&lt;p&gt;So while we go ahead now with knockout I will certainly keep an eye on
+agility&#x27;s development would love to find an excuse to use it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Configuring your ubuntu for faster internet access</title>
+        <published>2011-02-04T00:00:00+00:00</published>
+        <updated>2011-02-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/configuring-your-ubuntu-for-faster-internet-access/"/>
+        <id>https://shon.github.io/blog/configuring-your-ubuntu-for-faster-internet-access/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/configuring-your-ubuntu-for-faster-internet-access/">&lt;p&gt;While there is a lot already written here my quick howto&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; sudo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; bash&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; apt-get install dnsmasq squid&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; echo &amp;quot;listen-address=127.0.0.1&amp;quot; &amp;gt;&amp;gt; &#x2F;etc&#x2F;dnsmasq.conf&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; echo &amp;quot;no-dhcp-interface=&amp;quot; &amp;gt;&amp;gt; &#x2F;etc&#x2F;dnsmasq.conf&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; vi &#x2F;etc&#x2F;dhcp3&#x2F;dhclient.conf &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; # ^ uncomment line #prepend domain-name-servers 127.0.0.1;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; vi &#x2F;etc&#x2F;resolv.conf  # Add nameserver 127.0.0.1 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; &#x2F;etc&#x2F;init.d&#x2F;dnsmasq restart&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; vi &#x2F;etc&#x2F;squid&#x2F;squid.conf &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;http_port&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 3128&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;visible_hostname&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; localhost&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;acl&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; all&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; src&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; 0.0.0.0&#x2F;0.0.0.0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;cache_effective_user&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; proxy&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;cache_effective_group&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; proxy&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;http_access&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; allow&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; all&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;icp_access&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; allow&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; all&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;positive_dns_ttl&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 1&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; month&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;negative_dns_ttl&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 1&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; minute&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;httpd_accel_port&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 80&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;httpd_accel_with_proxy&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; on&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;httpd_accel_uses_host_header&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; on&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;cache_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; ufs&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &#x2F;cache&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 400&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 16&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 256&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;cache_store_log&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; none&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; mkdir &#x2F;cache # I have this dir on reizerfs partition&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; chown proxy.proxy &#x2F;cache&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; &#x2F;etc&#x2F;init.d&#x2F;squid restart&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Configure your browser to use 127.0.0.1:8080. Also read detailed dnsmasq
+setup article
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;ubuntu.wordpress.com&#x2F;2006&#x2F;08&#x2F;02&#x2F;local-dns-cache-for-faster-browsing&#x2F;&quot;&gt;http:&#x2F;&#x2F;ubuntu.wordpress.com&#x2F;2006&#x2F;08&#x2F;02&#x2F;local-dns-cache-for-faster-browsing&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Redis patterns | search</title>
+        <published>2010-11-26T00:00:00+00:00</published>
+        <updated>2010-11-26T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/redis-patterns-search/"/>
+        <id>https://shon.github.io/blog/redis-patterns-search/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/redis-patterns-search/">&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;&#x2F;h2&gt;
+&lt;p&gt;You want to implement search against user objects stored in redis using
+Python. Something like querying for all user ids whose username begins
+with &quot;an&quot;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Here we have user objects stored in as hashes with &quot;user:obj:&quot; as
+prefix.&lt;&#x2F;p&gt;
+&lt;p&gt;For example&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;user:obj:3955 {id: 3955, username: &#x27;John&#x27;, ..}&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;We need some extra data structures to support our search i.e. (search
+user objects where username begins with given phrase. So search for &lt;code&gt;jo&lt;&#x2F;code&gt;
+should match John, Joe and so on. We will use sorted sets of all
+usernames and will assign every element a score. This score is a float
+and helps us in finding the matching words.&lt;&#x2F;p&gt;
+&lt;p&gt;Some scores for eg.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;a -&amp;gt; 0.097ab -&amp;gt; 0.097098ac -&amp;gt; 0.097099bc -&amp;gt; 0.098099&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So for above four string if we find strings that has score that is =&amp;gt;
+0.097 and &amp;lt; 0.098, we find all strings that begins with &#x27;a&#x27;&lt;&#x2F;p&gt;
+&lt;p&gt;Code&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; Search usernames that begins with given phrase&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; usernames: (username1, username2, ..)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; userscore:&amp;lt;username&amp;gt;: float&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; user:obj: { id: int, username: string }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;usernames_zset&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;usernames&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; my_ord&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;c&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%03d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; ord&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;c&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; get_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;0.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; +&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;map&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;str&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; map&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;my_ord&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; get_next_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    s_score&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; get_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    part0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; s_score&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;4&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; s_score&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;4&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    next_c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; str&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;c&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;+&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    part1&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; s_score&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span&gt; part0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; +&lt;&#x2F;span&gt;&lt;span&gt; next_c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; +&lt;&#x2F;span&gt;&lt;span&gt; part1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; add_user&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;conn&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; username&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; score&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; The User Object&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    uid&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;incr&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;user:idgen&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;hset&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;user:obj:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; uid&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;id&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; username&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;    #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; datastructures necessary to implement search&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;zadd&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;usernames_zset&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; username&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; score&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; add_test_data&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;conn&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    test_data&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;abc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;ab&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;shekhar&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;shon&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;sh&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;        &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;zxcvbnmasdfghjklqwertyuiop0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;zxcvbnmasdfghjklqwertyuiop00&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span&gt; username&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; test_data&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        score&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; get_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;username&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        add_user&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;conn&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; username&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; score&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;import&lt;&#x2F;span&gt;&lt;span&gt; redis&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;conn&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; redis&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;Redis&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;add_test_data&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;conn&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; conn.zrange(usernames_zset, 0, -1) # Whole set&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;a_score&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; get_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;b_score&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; get_next_score&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Find all users starting with &amp;quot;a&amp;quot; -&amp;gt; INF&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt; conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;zrangebyscore&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;usernames_zset&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; a_score&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;INF&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Find all users starting with &amp;quot;a&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt; conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;zrangebyscore&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;usernames_zset&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; a_score&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; b_score&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Find all users starting with &amp;quot;a&amp;quot; limit 2&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt; conn&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;zrangebyscore&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;usernames_zset&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; a_score&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;INF&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 0&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; 2&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;discussion&quot;&gt;Discussion&lt;&#x2F;h2&gt;
+&lt;p&gt;This to demonstrate simple redis pattern and using it in Python.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;see-also&quot;&gt;See Also&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;code.google.com&#x2F;p&#x2F;redis&#x2F;wiki&#x2F;ZrangebyscoreCommand&quot;&gt;ZrangebyscoreCommand&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There are already some good writeups on related topics.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;playnice.ly&#x2F;blog&#x2F;2010&#x2F;05&#x2F;24&#x2F;redis-multi-field-searching-and-filtering&#x2F;&quot;&gt;playnicely&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;antirez.com&#x2F;post&#x2F;autocomplete-with-redis.html&quot;&gt;autocomplete&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reliance Netconnect Broadband+ on Linux</title>
+        <published>2010-11-26T00:00:00+00:00</published>
+        <updated>2010-11-26T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/"/>
+        <id>https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/reliance-netconnect-broadband-on-linux/">&lt;ul&gt;
+&lt;li&gt;It works. Make sure while purchasing you inform them that you use
+Linux&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s fast and reliable in Pashan, Pune area&lt;&#x2F;li&gt;
+&lt;li&gt;Below config worked for me on Ubuntu 9.10 AND 10.04&lt;&#x2F;li&gt;
+&lt;li&gt;There are Linux drivers on the CD but I could not get it working on
+Ubuntu 9.10.&lt;&#x2F;li&gt;
+&lt;li&gt;For activation, I had to use Windows :(&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; apt-get&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; install&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; usb-modeswitch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; wvdial&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;vi &#x2F;etc&#x2F;wvdial&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[Dialer Defaults] &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Phone = #777 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Password = &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Username = &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Baud = 460800&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Stupid Mode = 1 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;New PPPD = 1 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Tonline = 0 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Init1 = ATZ &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Init2 = ATQ0 V1E1 S0=0 &amp;amp;C1 &amp;amp;D2 +FCLASS=0 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Modem Type = Analog Modem &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Modem = &#x2F;dev&#x2F;ttyUSB0 &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;ISDN = 0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>xfce and ubuntuone</title>
+        <published>2010-11-26T00:00:00+00:00</published>
+        <updated>2010-11-26T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/xfce-and-ubuntuone/"/>
+        <id>https://shon.github.io/blog/xfce-and-ubuntuone/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/xfce-and-ubuntuone/">&lt;p&gt;I do like Ubuntu Netbook Remix&#x27;s UI. However with 10.04 it&#x27;s just gone
+so unstable for me.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;After login when system prompts for keyring secret, UNR environment
+crashes and drops to gnome. I have to relogin if I need UNR env.&lt;&#x2F;li&gt;
+&lt;li&gt;After I removed a few packages it could not just start gnome panel
+causing a great inconvenience. I guess this is due to Evolution
+integration with latest Ubuntu. Mail client I like and use is
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;www.mozillamessaging.com&#x2F;en-US&#x2F;thunderbird&#x2F;&quot;&gt;Thunderbird&lt;&#x2F;a&gt;. I
+cant switch to Evolution.&lt;&#x2F;li&gt;
+&lt;li&gt;Initially after 10.04 release it was damn slow to respond, so had to
+do some work around to get it to acceptable speed.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Considering all that I decided to switch to
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;www.xfce.org&#x2F;about&#x2F;screenshots&quot;&gt;Xfce&lt;&#x2F;a&gt;. It just worked like
+charm. But now I also use (and like :) )
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;one.ubuntu.com&#x2F;&quot;&gt;UbuntuOne&lt;&#x2F;a&gt; service for my backup. UbuntuOne is
+not integrated for XFCE. Also you cant do everything from UbuntuOne&#x27;s
+cli.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;u1sdtool&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;q&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;killall&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; ubuntuone-login&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; u1sdtool&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; configuration&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;u1sdtool&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-create-folder&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; ~&#x2F;my_data&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6A737D, #6A737D);&quot;&gt; add folders you want&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;synced&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; u1sdtool&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-list-folders&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; u1sdtool&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;-current-transfers&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For more details you might want to check &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;wiki.ubuntu.com&#x2F;UbuntuOne&#x2F;FAQ#How%20do%20I%20add%20my%20computer?&quot;&gt;Ubuntu One wiki&lt;&#x2F;a&gt;
+.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Unicode</title>
+        <published>2009-03-28T00:00:00+00:00</published>
+        <updated>2009-03-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/unicode/"/>
+        <id>https://shon.github.io/blog/unicode/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/unicode/">&lt;p&gt;Pulling your hair over some i18n bug? Or you fix one but are not able to
+explain it. This is little help in getting an idea about
+unicode&#x2F;codecs&#x2F;encoding&#x2F;decoding etc.&lt;&#x2F;p&gt;
+&lt;p&gt;Quick tips:&lt;&#x2F;p&gt;
+&lt;p&gt;a.  It does not make sense to have a string without knowing what
+encoding it uses.&lt;&#x2F;p&gt;
+&lt;p&gt;b.  Utf-8 is a way of storing string of Unicode code points.&lt;&#x2F;p&gt;
+&lt;p&gt;c.  Encoding: Transforming a unicode object into a sequence of bytes&lt;&#x2F;p&gt;
+&lt;p&gt;d.  Decoding: Recreating the unicode object from the sequence of bytes
+is known as decoding. There are many different methods for how this
+transformation can be done (these methods are also called
+encodings).&lt;&#x2F;p&gt;
+&lt;p&gt;Now&lt;&#x2F;p&gt;
+&lt;p&gt;Must Read&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;www.joelonsoftware.com&#x2F;articles&#x2F;Unicode.html&quot;&gt;http:&#x2F;&#x2F;www.joelonsoftware.com&#x2F;articles&#x2F;Unicode.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;447107&#x2F;whats-the-difference-between-encode-decode-python-2-x&quot;&gt;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;447107&#x2F;whats-the-difference-between-encode-decode-python-2-x&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Continue reading&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;farmdev.com&#x2F;talks&#x2F;unicode&#x2F;&quot;&gt;http:&#x2F;&#x2F;farmdev.com&#x2F;talks&#x2F;unicode&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;diveintopython.org&#x2F;xml_processing&#x2F;unicode.html&quot;&gt;http:&#x2F;&#x2F;diveintopython.org&#x2F;xml_processing&#x2F;unicode.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;440320&#x2F;unicode-vs-str-decode-for-a-utf8-encoded-byte-string-python-2-x&quot;&gt;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;440320&#x2F;unicode-vs-str-decode-for-a-utf8-encoded-byte-string-python-2-x&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Youtube flash videos to DivX (on Linux)</title>
+        <published>2009-03-15T00:00:00+00:00</published>
+        <updated>2009-03-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/youtube-flash-videos-to-divx-on-linux/"/>
+        <id>https://shon.github.io/blog/youtube-flash-videos-to-divx-on-linux/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/youtube-flash-videos-to-divx-on-linux/">&lt;p&gt;This how I convert flash I usually use &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;addons.mozilla.org&#x2F;en-US&#x2F;firefox&#x2F;addon&#x2F;3006&quot;&gt;Firefox VideoHelper
+Addon&lt;&#x2F;a&gt; to download
+youtube videos. To play them on my Philips DVP5986K DVD player from USB
+drive, I need to convert it to DivX.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;mencoder &#x2F;home&#x2F;shon&#x2F;Desktop&#x2F;file-864260998.flv -ovc lavc -oac mp3lame -ffourcc DX50 -o out.avi&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>LinkedIn backlash</title>
+        <published>2009-03-14T00:00:00+00:00</published>
+        <updated>2009-03-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/linkedin-backlash/"/>
+        <id>https://shon.github.io/blog/linkedin-backlash/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/linkedin-backlash/">&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;www.linkedin.com&#x2F;&quot;&gt;Linkedin&lt;&#x2F;a&gt; is one of the few sites that has
+certainly impressed me with it&#x27;s clever design. I would rate it very
+highly for professional networking. It has one very popular feature
+&quot;recommendations&quot;. Well, while I am not against recommending or get
+recommended by, as I have done both in past. But I see people who think
+that more and more people they have in their list (no matter how they
+know well each other professionally) and more recommendations they have
+received (mostly by requesting others) would make their prospects
+better. Umm oh, I wonder why are they are madly behind this. I receive a
+quite a few requests often. Some morning you check your emails and you
+see that some colleague in your company 2 years ago sends you a mail
+with subject &quot;can you endorse me?&quot;. And the email read something
+like this&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dear ,&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m sending this to ask you for a brief recommendation of my work that
+I can include in my LinkedIn profile. If you have any questions, let me
+know.&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks in advance for helping me out. -&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Now this above guy could be someone I don&#x27;t know that well how well
+he&#x2F;she is skilled. But now I can&#x27;t deny the request so in a day or two
+I would look at some other recommendations available for my other
+LinkedIn friends, copy some matter and send what is requested for. He
+happily accepts and send me a nice Thank you email. I see people who
+worked completely unrelated departments and has probably no ability to
+judge other&#x27;s work, go praising out of good relationships. May be what
+should happen on Orkut testimonials or somewhere similar. Does these
+people who have tens and hundreds of people in network and so many
+recommendations have no work other than hopping the jobs and sending
+such requests.&lt;&#x2F;p&gt;
+&lt;p&gt;Next time I interview someome with many endorsements, I would probably be
+more cautious hiring them.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tata Indicom USB Modem on Linux</title>
+        <published>2009-03-14T00:00:00+00:00</published>
+        <updated>2009-03-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/"/>
+        <id>https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/">&lt;p&gt;cat &#x2F;etc&#x2F;wvdial.conf:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[Dialer Defaults]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Init1 = ATZ&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Init2 = ATQ0 V1 E1 S0=0 &amp;amp;C1 &amp;amp;D2 +FCLASS=0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Modem Type = USB Modem&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Baud = 460800&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;New PPPD = yes&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Modem = &#x2F;dev&#x2F;ttyACM0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;ISDN = 0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Stupid mode = 1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Phone = #777&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Password = internet&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Username = internet&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Don&#x27;t understand above? Umm ok but I am too lazy to explain.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>My open source projects</title>
+        <published>2009-02-17T00:00:00+00:00</published>
+        <updated>2009-02-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/my-open-source-projects/"/>
+        <id>https://shon.github.io/blog/my-open-source-projects/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/my-open-source-projects/">&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Cowoop&#x2F;cowspa3&quot;&gt;Cowoop&lt;&#x2F;a&gt;: Open source application
+to manage coworking business.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;pypi.python.org&#x2F;pypi&#x2F;httpagentparser&quot;&gt;httpagentparser&lt;&#x2F;a&gt;:
+Python HTTP Agent Parser.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;pypi.python.org&#x2F;pypi&#x2F;sphc&quot;&gt;SPHC&lt;&#x2F;a&gt;: Simple Pythonic HTML
+Creator.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;code.google.com&#x2F;p&#x2F;syncer&#x2F;&quot;&gt;Syncer&lt;&#x2F;a&gt;: A event daemon based on
+Pyro.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;code.google.com&#x2F;p&#x2F;stockie&#x2F;&quot;&gt;Stockie&lt;&#x2F;a&gt;: A personal portfolio
+manager for an Investor&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Qemu networking setup</title>
+        <published>2009-02-16T00:00:00+00:00</published>
+        <updated>2009-02-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/qemu-networking-setup/"/>
+        <id>https://shon.github.io/blog/qemu-networking-setup/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/qemu-networking-setup/">&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ------------        ----------&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    |           |      |  Guest  |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    | Host  ----+------+-----    |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    |      |    | Hub  |     |   |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    |      |tap0|      |tap1 |   |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    |      |-----+-----+-----|   |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    | eth0      |      |         |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    |   |       |      |         |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ----+-------       ----------&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     |&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    (Internet)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;host&quot;&gt;Host&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;* Add a hub&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# vde_switch  -x -d -tap tap0 -tap tap1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;* Assign ip to host&amp;#39;s nic&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# ifconfig tap0 192.168.1.1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;* Setup ip forwarding&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Modify &#x2F;etc&#x2F;sysctl.conf&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;net.ipv4.ip_forward=1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;* Setup masquerading&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;* Fire qemu&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# vdeqemu -m 1024 -localtime &#x2F;vm&#x2F;&#x2F;jos_8.04_01&#x2F;jos_8.04_01.img&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;guest&quot;&gt;Guest&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# ifconfig eth0 192.168.1.2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# route add default gw 192.168.1.1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# vi &#x2F;etc&#x2F;resolv.com&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# ping google.com&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Using DOT language to produce Flowchart</title>
+        <published>2008-12-09T00:00:00+00:00</published>
+        <updated>2008-12-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/using-dot-language-to-produce-flowchart/"/>
+        <id>https://shon.github.io/blog/using-dot-language-to-produce-flowchart/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/using-dot-language-to-produce-flowchart/">&lt;p&gt;better than struggling with the graphical tools.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; cat&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; test.dot&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;digraph FlowChart {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt; node [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         fontname = &amp;quot;Bitstream Vera Sans&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         fontsize = 8&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         shape = &amp;quot;record&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     ]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt; edge [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         fontname = &amp;quot;Bitstream Vera Sans&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         fontsize = 8&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         fontcolor = &amp;quot;Red&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     ]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&#x2F;&#x2F; all blocks&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;greet [label=&amp;quot;Hello, techie&amp;quot;, shape=&amp;quot;oval&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_os [label=&amp;quot;What OS do you use?&amp;quot; shape=&amp;quot;diamond&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;like_me [label=&amp;quot;Great, me too!&amp;quot;, shape=&amp;quot;oval&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_browser [label=&amp;quot;You must be using firefox&amp;quot;, shape=&amp;quot;diamond&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;ff [label=&amp;quot;Cool&amp;quot;, shape=&amp;quot;oval&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;bye [label=&amp;quot;Bye&amp;quot;, shape=&amp;quot;oval&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&#x2F;&#x2F; relations&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;greet -&amp;gt; which_os&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_os -&amp;gt; like_me [label=&amp;quot;I use Linux&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_os -&amp;gt; which_browser [label=&amp;quot;I use Windows&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_browser -&amp;gt; ff [label=&amp;quot;Right&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;which_browser -&amp;gt; bye [label=&amp;quot;what firefox?&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here is the result.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; dot&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; test.dot&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;Tpng&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;o&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; test.png&lt;&#x2F;span&gt;&lt;span&gt; &amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; eog&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; test.png&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;002.png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Contract verification in Python</title>
+        <published>2008-04-17T00:00:00+00:00</published>
+        <updated>2008-04-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/contract-verification-in-python/"/>
+        <id>https://shon.github.io/blog/contract-verification-in-python/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/contract-verification-in-python/">&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;import&lt;&#x2F;span&gt;&lt;span&gt; zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;verify&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; ITest&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt;Interface&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;arg1&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; bar&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Test&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;object&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;   zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;implements&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;ITest&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;self&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Test2&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;object&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;   zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;implements&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;ITest&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;self&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; arg1&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; Test3&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;object&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;   zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;implements&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;ITest&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;self&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; arg1&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   def&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#6F42C1, #B392F0);&quot;&gt; bar&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;self&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; pass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;for&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; cls&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; in&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;Test&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; Test2&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; Test3&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   try&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;       if&lt;&#x2F;span&gt;&lt;span&gt; zope&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;interface&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;verify&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span&gt;verifyClass&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;ITest&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; cls&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;           print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;OK: &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; correctly implements &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;cls&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;__name__&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; ITest&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;__name__&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt;   except&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt; Exception&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; err&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;       print&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;Error detected with &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;#39;s implementation: &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;%s&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#032F62, #9ECBFF);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#D73A49, #F97583);&quot;&gt; %&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;cls&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#005CC5, #79B8FF);&quot;&gt;__name__&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; err&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Getting older, getting better and better!</title>
+        <published>2008-04-17T00:00:00+00:00</published>
+        <updated>2008-04-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/getting-older-getting-better-and-better/"/>
+        <id>https://shon.github.io/blog/getting-older-getting-better-and-better/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/getting-older-getting-better-and-better/">&lt;p&gt;Python programming is joy. I was stuck on python 2.3 at my work for long
+and could not really get chance to explore later versions. Now that I
+got the opportunity doing re-architecture of the product I started
+exploring these. I am more than excited looking at deque, groupby,
+defaultdict and much more ... Also on top of it there exist excellent
+python softwares like &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;twistedmatrix.com&quot;&gt;twisted,&lt;&#x2F;a&gt;
+&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;sqlalchemy.org&quot;&gt;sqlalchemy&lt;&#x2F;a&gt;, &lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;turbogears.org&quot;&gt;turbogears&lt;&#x2F;a&gt;
+makes it even more cool.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s little pity that the language is stll somewhat less recognized
+than others. Or there are more hyped languages exist.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>UI Testing and BDD</title>
+
+
+
+<meta name="title" content="UI Testing and BDD">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/ui-testing-and-bdd/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="UI Testing and BDD">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/ui-testing-and-bdd/">
+
+<meta property="twitter:title" content="UI Testing and BDD">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/ui-testing-and-bdd/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">ui-testing-and-bdd</span></div>
+<time datetime="2014-06-19">Published on: <span class="metaData">2014-06-19</span></time>
+
+<h1>UI Testing and BDD</h1>
+
+
+
+<p>Recently I had an opportunity to automate UI testing of the web
+application we have developed. So I found this excellent UI testing
+framework <a rel="external" href="http://splinter.cobrateam.info/">Splinter</a>. It being written
+in Python I was instantly confortable.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> From Splinter&#39;s website</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> splinter</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span> Browser</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);"> with</span><span> Browser</span><span>(</span><span>)</span><span style="color: light-dark(#D73A49, #F97583);"> as</span><span> browser</span><span>:</span></span>
+<span class="giallo-l"><span>     url</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#032F62, #9ECBFF);"> &quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">http://www.google.com</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span>     browser</span><span>.</span><span>visit</span><span>(</span><span>url</span><span>)</span></span>
+<span class="giallo-l"><span>     browser</span><span>.</span><span>fill</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">q</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">splinter python acceptance testing</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>     button</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> browser</span><span>.</span><span>find_by_name</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">btnG</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>     button</span><span>.</span><span>click</span><span>(</span><span>)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">     if</span><span> browser</span><span>.</span><span>is_text_present</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">splinter.cobrateam.info</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">         print</span><span style="color: light-dark(#032F62, #9ECBFF);"> &quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">Yes, the official website was found!</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">     else</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">         print</span><span style="color: light-dark(#032F62, #9ECBFF);"> &quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">No, it wasn&#39;t found... We need to improve</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span></code></pre>
+<p>Ah well sweet. It supports multiple webdrivers including remote. So
+it's possible to integrate it with <a rel="external" href="http://saucelabs.com">saucelabs</a>
+which makes it possible to test on web browsers which are not on your
+dev box.</p>
+<p>Also that you have access to live browser session in Python makes it
+even more pleasant.</p>
+<p>I happened to read on BDD or (Behavior-driven development) and then soon
+stumbled upon <a rel="external" href="https://pythonhosted.org/behave/">behave</a>. It's good
+idea to use it for testing as it provides nice seperation in test cases
+implementation and test cases. It uses <a rel="external" href="https://pythonhosted.org/behave/philosophy.html#the-gherkin-language">The Gherkin
+language</a>
+to describe testing scenarios.</p>
+<p>Something like below which even non tech person in your team can write</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="gherkin"><span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">Feature</span><span>:</span><span style="color: light-dark(#032F62, #9ECBFF);"> SEO Test</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    Scenario</span><span>:</span><span style="color: light-dark(#032F62, #9ECBFF);"> Search Google for Splinter</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        When </span><span>I visit </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">http://google.com</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        And </span><span>I fill in </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">q</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span> with </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">Splinter Python</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        And </span><span>I press </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">btnG</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        Then </span><span>I should see </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">splinter.cobrateam</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span> within 5 seconds </span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    Scenario</span><span>:</span><span style="color: light-dark(#032F62, #9ECBFF);"> Search Google for Shekhar&#39;s Blog </span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">        # would fail</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        When </span><span>I visit </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">http://google.com</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        And </span><span>I fill in </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">q</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span> with </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">Shekhar Tiwatne</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        And </span><span>I press </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">btnG</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        Then </span><span>I should see </span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">shon.github.io</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span> within 5 seconds </span></span></code></pre><h2 id="environment-setup">Environment Setup</h2>
+<p>To make things easier</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">pip</span><span style="color: light-dark(#032F62, #9ECBFF);"> install</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">-upgrade</span><span style="color: light-dark(#032F62, #9ECBFF);"> splinter</span><span style="color: light-dark(#032F62, #9ECBFF);"> behave</span><span style="color: light-dark(#032F62, #9ECBFF);"> behaving</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">mkdir</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">p</span><span style="color: light-dark(#032F62, #9ECBFF);"> features/steps</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">touch</span><span style="color: light-dark(#032F62, #9ECBFF);"> features/steps/__init__.py</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">wget</span><span style="color: light-dark(#032F62, #9ECBFF);"> https://gist.githubusercontent.com/shon/90ac6af750b575cde050/raw/e89262dd5f722dcc1d83d37c011283330c31e9fc/environment.py</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">mv</span><span style="color: light-dark(#032F62, #9ECBFF);"> environment.py</span><span style="color: light-dark(#032F62, #9ECBFF);"> features</span></span></code></pre>
+<p>Create features/steps/everything.py with below code. It essentially
+imports steps implementation.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> behave</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span> step</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> behaving</span><span>.</span><span>web</span><span>.</span><span>steps</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span style="color: light-dark(#D73A49, #F97583);"> *</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> behaving</span><span>.</span><span>personas</span><span>.</span><span>steps</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span style="color: light-dark(#D73A49, #F97583);"> *</span></span></code></pre><h2 id="run">Run</h2>
+<p>We are ready. Simply execute <em>behave</em> and see firefox window executing
+all tests for you. You should see one test passed and one failed as
+intended.</p>
+<p>::</p>
+<p>:   behave</p>
+<p><img src="/images/behave.png" alt="Bingo!" /></p>
+<h2 id="what-next">What next</h2>
+<p>Read how to implement steps (grammer)
+<a rel="external" href="https://pythonhosted.org/behave/tutorial.html">here</a>.</p>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

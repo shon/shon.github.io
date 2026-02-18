@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - SSG</title>
+    <link rel="self" type="application/atom+xml" href="https://shon.github.io/tags/ssg/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://shon.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-10-20T00:00:00+00:00</updated>
+    <id>https://shon.github.io/tags/ssg/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Zola</title>
+        <published>2023-10-20T00:00:00+00:00</published>
+        <updated>2023-10-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shon.github.io/blog/zola/"/>
+        <id>https://shon.github.io/blog/zola/</id>
+        
+        <content type="html" xml:base="https://shon.github.io/blog/zola/">&lt;p&gt;This site is powered by excellent &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Some history&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;My blogging journey began with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;getpelican.com&#x2F;&quot;&gt;Pelican&lt;&#x2F;a&gt;, which was pretty neat until I crossed paths with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vladris&#x2F;tinkerer&quot;&gt;Tinkerer&lt;&#x2F;a&gt;. I absolutely loved Tinkerer. I chose RestructuredText as the text markup, which was quiet popular that time among the Pythonistas during that era.&lt;&#x2F;p&gt;
+&lt;p&gt;My blogging saga however took a backseat, with only sporadic ramblings on my &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;shon.stck.me&quot;&gt;stck&lt;&#x2F;a&gt; account and for &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;engineering.stck.me&quot;&gt;stck engg&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Earlier this year, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;ansht.me&quot;&gt;ansht.me&lt;&#x2F;a&gt; inspired me to revive this site again. I flirted with the idea of writing my own SSG. On realizing that even creating own SSG could have been ideal, it would be reinventing the wheel when there are already many great tools available.
+Existing tool Tinkerer is now retired. Tinkerer&#x27;s spiritual successor Baku isn&#x27;t ready yet. So I considered top tools Jekyll, Hugo and Zola.&lt;&#x2F;p&gt;
+&lt;p&gt;Jekyll&#x27;s is great and integrated with github but I wanted something easier to setup locally. So I tried Hugo and Zola. I could get Zola running in no time and loved it&#x27;s simplicity.&lt;&#x2F;p&gt;
+&lt;p&gt;I wrote a script to port RestructuredText files to Markdown and restructure the source for Zola.
+Among Zola themes, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Speyll&#x2F;anemone&quot;&gt;Anemone&lt;&#x2F;a&gt; theme is fairly close to the minimalist style I was looking for.
+Also spent some time customizing Zola for my requirement and taste. One of the customization is using &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;lp&#x2F;mono&#x2F;&quot;&gt;JetBrains Mono font&lt;&#x2F;a&gt; (inspiration: https:&#x2F;&#x2F;ansht.me). So all in all, the outcome is a rejuvenated blog space that felt just right, mirroring the simplicity and flexibility that I longed for.&lt;&#x2F;p&gt;
+&lt;p&gt;So here’s to many more blog posts, code snippets, and the continuous quest for the perfect blogging setup!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

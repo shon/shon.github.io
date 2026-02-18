@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Tata Indicom USB Modem on Linux</title>
+
+
+
+<meta name="title" content="Tata Indicom USB Modem on Linux">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Tata Indicom USB Modem on Linux">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/">
+
+<meta property="twitter:title" content="Tata Indicom USB Modem on Linux">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/tata-indicom-usb-modem-on-linux/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">tata-indicom-usb-modem-on-linux</span></div>
+<time datetime="2009-03-14">Published on: <span class="metaData">2009-03-14</span></time>
+
+<h1>Tata Indicom USB Modem on Linux</h1>
+
+
+
+<p>cat /etc/wvdial.conf:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="plain"><span class="giallo-l"><span>[Dialer Defaults]</span></span>
+<span class="giallo-l"><span>Init1 = ATZ</span></span>
+<span class="giallo-l"><span>Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span></span>
+<span class="giallo-l"><span>Modem Type = USB Modem</span></span>
+<span class="giallo-l"><span>Baud = 460800</span></span>
+<span class="giallo-l"><span>New PPPD = yes</span></span>
+<span class="giallo-l"><span>Modem = /dev/ttyACM0</span></span>
+<span class="giallo-l"><span>ISDN = 0</span></span>
+<span class="giallo-l"><span>Stupid mode = 1</span></span>
+<span class="giallo-l"><span>Phone = #777</span></span>
+<span class="giallo-l"><span>Password = internet</span></span>
+<span class="giallo-l"><span>Username = internet</span></span></code></pre>
+<p>Don't understand above? Umm ok but I am too lazy to explain.</p>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

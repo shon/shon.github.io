@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Postgres Array vs Join benchmark</title>
+
+
+
+<meta name="title" content="Postgres Array vs Join benchmark">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/postgres-array-performance/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Postgres Array vs Join benchmark">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/postgres-array-performance/">
+
+<meta property="twitter:title" content="Postgres Array vs Join benchmark">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/postgres-array-performance/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">postgres-array-performance</span></div>
+<time datetime="2015-12-21">Published on: <span class="metaData">2015-12-21</span></time>
+
+<h1>Postgres Array vs Join benchmark</h1>
+
+
+
+<p>Here is little experiment to measure postgresql array's performance.
+For the example problem let us take blog posts and tags.</p>
+<h2 id="join-approach">Join approach</h2>
+<p>This is perhaps more common approach to model posts and tags. So let's
+define model. Here I am using excellent
+<a rel="external" href="http://peewee.readthedocs.org">Peewee</a>. So we have three tables Post,
+Tag and PostTag. PostTag table maintains all post to tag records.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Post</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    title</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> CharField</span><span>(</span><span style="color: light-dark(#E36209, #FFAB70);">default</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">example title</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Tag</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    name</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> CharField</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> PostTag</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    post</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ForeignKeyField</span><span>(</span><span>Post</span><span>)</span></span>
+<span class="giallo-l"><span>    tag</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ForeignKeyField</span><span>(</span><span>Tag</span><span>)</span></span></code></pre><h2 id="array">Array</h2>
+<p>Postgresql supports array columns. In this model array field Post.tags
+shall be used to maintain post-tag entries instead of PostTag model.
+Even <em>Tag</em> is not needed in this case.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Post</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    title</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> CharField</span><span>(</span><span style="color: light-dark(#E36209, #FFAB70);">default</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">example title</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>    tags</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ArrayField</span><span>(</span><span>CharField</span><span>,</span><span style="color: light-dark(#E36209, #FFAB70);"> default</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span>[</span><span>]</span><span>,</span><span style="color: light-dark(#E36209, #FFAB70);"> index</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span style="color: light-dark(#005CC5, #79B8FF);">True</span><span>)</span></span></code></pre><h2 id="complete-code">Complete code</h2>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">import</span><span> random</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> tqdm</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span> tqdm</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> peewee</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span style="color: light-dark(#D73A49, #F97583);"> *</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> myapp</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span> db</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">from</span><span> playhouse</span><span>.</span><span>postgres_ext</span><span style="color: light-dark(#D73A49, #F97583);"> import</span><span> ArrayField</span><span>,</span><span> ForeignKeyField</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> BaseModel</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">Model</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Meta</span><span>:</span></span>
+<span class="giallo-l"><span>        database</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> db</span></span>
+<span class="giallo-l"><span>        only_save_dirty</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#005CC5, #79B8FF);"> True</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Post</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    title</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> CharField</span><span>(</span><span style="color: light-dark(#E36209, #FFAB70);">default</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">example title</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>    tags</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ArrayField</span><span>(</span><span>CharField</span><span>,</span><span style="color: light-dark(#E36209, #FFAB70);"> default</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span>[</span><span>]</span><span>,</span><span style="color: light-dark(#E36209, #FFAB70);"> index</span><span style="color: light-dark(#D73A49, #F97583);">=</span><span style="color: light-dark(#005CC5, #79B8FF);">True</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> Tag</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    name</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> CharField</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">class</span><span style="color: light-dark(#6F42C1, #B392F0);"> PostTag</span><span>(</span><span style="color: light-dark(#6F42C1, #B392F0);">BaseModel</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    post</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ForeignKeyField</span><span>(</span><span>Post</span><span>)</span></span>
+<span class="giallo-l"><span>    tag</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> ForeignKeyField</span><span>(</span><span>Tag</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> setup</span><span>(</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    no_of_posts</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#005CC5, #79B8FF);"> 25000</span></span>
+<span class="giallo-l"><span>    no_of_tags</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#005CC5, #79B8FF);"> 10000</span></span>
+<span class="giallo-l"><span>    tags_per_post</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#005CC5, #79B8FF);"> 15</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    for</span><span> t</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> (</span><span>PostTag</span><span>,</span><span> Tag</span><span>,</span><span> Post</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">        if</span><span> t</span><span>.</span><span>table_exists</span><span>(</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>            t</span><span>.</span><span>drop_table</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    for</span><span> t</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> (</span><span>Tag</span><span>,</span><span> Post</span><span>,</span><span> PostTag</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>        t</span><span>.</span><span>create_table</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    tags</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> [</span><span>{</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">name</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>:</span><span> (</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tag-</span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#D73A49, #F97583);"> %</span><span> i</span><span>)</span><span>}</span><span style="color: light-dark(#D73A49, #F97583);"> for</span><span> i</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span style="color: light-dark(#005CC5, #79B8FF);"> range</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">1</span><span>,</span><span> no_of_tags</span><span>)</span><span>]</span></span>
+<span class="giallo-l"><span>    Tag</span><span>.</span><span>insert_many</span><span>(</span><span>tags</span><span>)</span><span>.</span><span>execute</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    posts</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> [</span><span>{</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">id</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>:</span><span> i</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tags</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>:</span><span> [</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tag-</span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#D73A49, #F97583);"> %</span><span> j</span><span>)</span><span style="color: light-dark(#D73A49, #F97583);"> for</span><span> j</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> random</span><span>.</span><span>sample</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">range</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">1</span><span>,</span><span> no_of_tags</span><span>)</span><span>,</span><span> tags_per_post</span><span>)</span><span>]</span><span>}</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">             for</span><span> i</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span style="color: light-dark(#005CC5, #79B8FF);"> range</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">1</span><span>,</span><span> no_of_posts</span><span>)</span><span>]</span></span>
+<span class="giallo-l"><span>    Post</span><span>.</span><span>insert_many</span><span>(</span><span>posts</span><span>)</span><span>.</span><span>execute</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    for</span><span> post</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> tqdm</span><span>(</span><span>posts</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>        post_id</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> post</span><span>[</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">id</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>]</span></span>
+<span class="giallo-l"><span>        post_tags</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> [</span><span>{</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">post</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>:</span><span> post_id</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tag</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>:</span><span> tag</span><span>.</span><span>split</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">-</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span><span>[</span><span style="color: light-dark(#005CC5, #79B8FF);">1</span><span>]</span><span>}</span><span style="color: light-dark(#D73A49, #F97583);"> for</span><span> tag</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> post</span><span>[</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tags</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>]</span><span>]</span></span>
+<span class="giallo-l"><span>        PostTag</span><span>.</span><span>insert_many</span><span>(</span><span>post_tags</span><span>)</span><span>.</span><span>execute</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">    print</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">Total posts: </span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#005CC5, #79B8FF);">\n</span><span style="color: light-dark(#032F62, #9ECBFF);">Total tags: </span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#005CC5, #79B8FF);">\n</span><span style="color: light-dark(#032F62, #9ECBFF);">Tags per post: </span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#005CC5, #79B8FF);">\n</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#D73A49, #F97583);"> %</span><span> (</span><span>no_of_posts</span><span>,</span><span> no_of_tags</span><span>,</span><span> tags_per_post</span><span>)</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);"> def</span><span style="color: light-dark(#6F42C1, #B392F0);"> test_join</span><span>(</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">    #</span><span style="color: light-dark(#6A737D, #6A737D);"> =&gt; SELECT Count(post.id) FROM post INNER JOIN posttag ON (post.id = posttag.post_id) \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">    #</span><span style="color: light-dark(#6A737D, #6A737D);">    WHERE (posttag.tag_id = 8);</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    return</span><span> Post</span><span>.</span><span>select</span><span>(</span><span>)</span><span>.</span><span>join</span><span>(</span><span>PostTag</span><span>)</span><span>.</span><span>join</span><span>(</span><span>Tag</span><span>)</span><span>.</span><span>where</span><span>(</span><span>Tag</span><span>.</span><span>id</span><span style="color: light-dark(#D73A49, #F97583);"> ==</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">8</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span><span>.</span><span>count</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> test_array</span><span>(</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">    #</span><span style="color: light-dark(#6A737D, #6A737D);"> =&gt; SELECT Count(&quot;id&quot;) FROM post WHERE tags @&gt; &#39;{tag-8}&#39;;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    return</span><span> Post</span><span>.</span><span>select</span><span>(</span><span>)</span><span>.</span><span>where</span><span>(</span><span>Post</span><span>.</span><span>tags</span><span>.</span><span>contains</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">tag-8</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span><span>)</span><span>.</span><span>count</span><span>(</span><span>)</span></span></code></pre>
+<p>Needless to say selecting tags for a article would be faster as we are
+elinimating the joins. But it would be interesting to see that how
+finding articles for given tag will perform.</p>
+<p>And here are the numbers on my machine (Mac Air Ubuntu 15.10 Python
+2.7.9).</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">$</span><span style="color: light-dark(#032F62, #9ECBFF);"> python</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">i</span><span style="color: light-dark(#032F62, #9ECBFF);"> bench.py</span></span>
+<span class="giallo-l"><span>&gt;&gt;&gt;</span><span style="color: light-dark(#6F42C1, #B392F0);"> setup</span><span>(</span><span>)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">Total</span><span style="color: light-dark(#032F62, #9ECBFF);"> posts:</span><span style="color: light-dark(#005CC5, #79B8FF);"> 25000</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">Total</span><span style="color: light-dark(#032F62, #9ECBFF);"> tags:</span><span style="color: light-dark(#005CC5, #79B8FF);"> 1000</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">Tags</span><span style="color: light-dark(#032F62, #9ECBFF);"> per</span><span style="color: light-dark(#032F62, #9ECBFF);"> post:</span><span style="color: light-dark(#005CC5, #79B8FF);"> 15</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">$</span><span style="color: light-dark(#032F62, #9ECBFF);"> python</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">mtimeit</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">s</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">import bench</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">bench.test_join()</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">100</span><span style="color: light-dark(#032F62, #9ECBFF);"> loops,</span><span style="color: light-dark(#032F62, #9ECBFF);"> best</span><span style="color: light-dark(#032F62, #9ECBFF);"> of</span><span style="color: light-dark(#032F62, #9ECBFF);"> 3:</span><span style="color: light-dark(#005CC5, #79B8FF);"> 8.32</span><span style="color: light-dark(#032F62, #9ECBFF);"> msec</span><span style="color: light-dark(#032F62, #9ECBFF);"> per</span><span style="color: light-dark(#032F62, #9ECBFF);"> loop</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">$</span><span style="color: light-dark(#032F62, #9ECBFF);"> python</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">mtimeit</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">s</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">import bench</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">bench.test_array()</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">1000</span><span style="color: light-dark(#032F62, #9ECBFF);"> loops,</span><span style="color: light-dark(#032F62, #9ECBFF);"> best</span><span style="color: light-dark(#032F62, #9ECBFF);"> of</span><span style="color: light-dark(#032F62, #9ECBFF);"> 3:</span><span style="color: light-dark(#005CC5, #79B8FF);"> 869</span><span style="color: light-dark(#032F62, #9ECBFF);"> usec</span><span style="color: light-dark(#032F62, #9ECBFF);"> per</span><span style="color: light-dark(#032F62, #9ECBFF);"> loop</span></span></code></pre>
+
+<p class="tagsData">
+  
+  
+  <a href="/tags/python">&#47;python&#47;</a>
+  
+  <a href="/tags/postgresql">&#47;postgresql&#47;</a>
+  
+  <a href="/tags/peewee">&#47;peewee&#47;</a>
+  
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

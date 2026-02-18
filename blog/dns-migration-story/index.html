@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Namecheap to AWS Route53 DNS Migration story</title>
+
+
+
+<meta name="title" content="Namecheap to AWS Route53 DNS Migration story">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/dns-migration-story/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Namecheap to AWS Route53 DNS Migration story">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/dns-migration-story/">
+
+<meta property="twitter:title" content="Namecheap to AWS Route53 DNS Migration story">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/dns-migration-story/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">dns-migration-story</span></div>
+<time datetime="2014-12-21">Published on: <span class="metaData">2014-12-21</span></time>
+
+<h1>Namecheap to AWS Route53 DNS Migration story</h1>
+
+
+
+<p>System administration is not my job but then sometimes I need to wear that hat to help the team. Here is how I managed DNS migration from Namecheap to AWS Route53.</p>
+<h2 id="get-the-zone-file">Get the Zone file</h2>
+<p>Namecheap support was kind enough to send me zone file when I requested for one.</p>
+<h2 id="format-the-zone-file">Format the zone file</h2>
+<ul>
+<li>Remove whitespeces in the beginning of all lines in zone file</li>
+<li>Add below text as first line of zone file</li>
+<li>Make sure quote all TXT record values</li>
+</ul>
+<p><code>@ORIGIN example.com</code></p>
+<p>Install cli53</p>
+<p><code>pip install cli53</code></p>
+<h2 id="zone-export">Zone export</h2>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="plain"><span class="giallo-l"><span>cli53 create example.com</span></span>
+<span class="giallo-l"><span>cli53 import example.com --file example.com.zone</span></span></code></pre><h2 id="verify">Verify</h2>
+<p>Find out your name server. Logon to AWS Route 53 console and find out NS entries. Pick one. In my case it was ns-1261.awsdns-29.org</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">pip</span><span style="color: light-dark(#032F62, #9ECBFF);"> install</span><span style="color: light-dark(#005CC5, #79B8FF);"> \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#032F62, #9ECBFF);">    git+http://github.com/joemiller/dns_compare.git#egg=dns_compare</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">dns_compare</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">z</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">-file</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com.zone</span><span style="color: light-dark(#005CC5, #79B8FF);"> \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">    -</span><span style="color: light-dark(#005CC5, #79B8FF);">-server</span><span style="color: light-dark(#005CC5, #79B8FF);"> 8.8.8.8</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">t</span><span style="color: light-dark(#005CC5, #79B8FF);"> false</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">dns_compare</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">z</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">-file</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com.zone</span><span style="color: light-dark(#005CC5, #79B8FF);"> \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">    -</span><span style="color: light-dark(#005CC5, #79B8FF);">-server</span><span style="color: light-dark(#032F62, #9ECBFF);"> ns-1261.awsdns-29.org</span><span style="color: light-dark(#6A737D, #6A737D);"> #</span><span style="color: light-dark(#6A737D, #6A737D);"> use your aws ns</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> -- OR --- use -t to ignore ttl differences</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6F42C1, #B392F0);">dns_compare</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">z</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">-file</span><span style="color: light-dark(#032F62, #9ECBFF);"> example.com.zone</span><span style="color: light-dark(#005CC5, #79B8FF);"> \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">    -</span><span style="color: light-dark(#005CC5, #79B8FF);">-server</span><span style="color: light-dark(#032F62, #9ECBFF);"> ns-1261.awsdns-29.org</span><span style="color: light-dark(#005CC5, #79B8FF);"> -</span><span style="color: light-dark(#005CC5, #79B8FF);">t</span><span style="color: light-dark(#005CC5, #79B8FF);"> false</span></span></code></pre><h2 id="finally">Finally</h2>
+<p>Note: <strong>Steps below will cause some downtime (number of hours)</strong></p>
+<p>Go to namecheap’s “Transfer DNS to Webhost” page for your domain. Add new name servers. Save.</p>
+<p><code>watch dig -t ANY @8.8.8.8 example.com</code></p>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

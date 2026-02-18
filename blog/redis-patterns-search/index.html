@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Redis patterns | search</title>
+
+
+
+<meta name="title" content="Redis patterns | search">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/redis-patterns-search/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Redis patterns | search">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/redis-patterns-search/">
+
+<meta property="twitter:title" content="Redis patterns | search">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/redis-patterns-search/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml">
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">redis-patterns-search</span></div>
+<time datetime="2010-11-26">Published on: <span class="metaData">2010-11-26</span></time>
+
+<h1>Redis patterns | search</h1>
+
+
+
+<h2 id="problem">Problem</h2>
+<p>You want to implement search against user objects stored in redis using
+Python. Something like querying for all user ids whose username begins
+with "an".</p>
+<h2 id="solution">Solution</h2>
+<p>Here we have user objects stored in as hashes with "user:obj:" as
+prefix.</p>
+<p>For example</p>
+<p><code>user:obj:3955 {id: 3955, username: 'John', ..}</code></p>
+<p>We need some extra data structures to support our search i.e. (search
+user objects where username begins with given phrase. So search for <code>jo</code>
+should match John, Joe and so on. We will use sorted sets of all
+usernames and will assign every element a score. This score is a float
+and helps us in finding the matching words.</p>
+<p>Some scores for eg.</p>
+<p><code>a -&gt; 0.097ab -&gt; 0.097098ac -&gt; 0.097099bc -&gt; 0.098099</code></p>
+<p>So for above four string if we find strings that has score that is =&gt;
+0.097 and &lt; 0.098, we find all strings that begins with 'a'</p>
+<p>Code</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> Search usernames that begins with given phrase</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> usernames: (username1, username2, ..)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> userscore:&lt;username&gt;: float</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> user:obj: { id: int, username: string }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>usernames_zset</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#032F62, #9ECBFF);"> &quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">usernames</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> my_ord</span><span>(</span><span>c</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    return</span><span style="color: light-dark(#032F62, #9ECBFF);"> &quot;</span><span style="color: light-dark(#005CC5, #79B8FF);">%03d</span><span style="color: light-dark(#032F62, #9ECBFF);">&quot;</span><span style="color: light-dark(#D73A49, #F97583);"> %</span><span style="color: light-dark(#005CC5, #79B8FF);"> ord</span><span>(</span><span>c</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> get_score</span><span>(</span><span>s</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    return</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">0.</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#D73A49, #F97583);"> +</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>.</span><span>join</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">map</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">str</span><span>,</span><span style="color: light-dark(#005CC5, #79B8FF);"> map</span><span>(</span><span>my_ord</span><span>,</span><span>s</span><span>)</span><span>)</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> get_next_score</span><span>(</span><span>s</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    s_score</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> get_score</span><span>(</span><span>s</span><span>)</span></span>
+<span class="giallo-l"><span>    part0</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> s_score</span><span>[</span><span>:</span><span style="color: light-dark(#005CC5, #79B8FF);">4</span><span>]</span></span>
+<span class="giallo-l"><span>    c</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> s_score</span><span>[</span><span style="color: light-dark(#005CC5, #79B8FF);">4</span><span>]</span></span>
+<span class="giallo-l"><span>    next_c</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span style="color: light-dark(#005CC5, #79B8FF);"> str</span><span>(</span><span style="color: light-dark(#005CC5, #79B8FF);">int</span><span>(</span><span>c</span><span>)</span><span style="color: light-dark(#D73A49, #F97583);">+</span><span style="color: light-dark(#005CC5, #79B8FF);">1</span><span>)</span></span>
+<span class="giallo-l"><span>    part1</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> s_score</span><span>[</span><span style="color: light-dark(#005CC5, #79B8FF);">5</span><span>:</span><span>]</span></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    return</span><span> part0</span><span style="color: light-dark(#D73A49, #F97583);"> +</span><span> next_c</span><span style="color: light-dark(#D73A49, #F97583);"> +</span><span> part1</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> add_user</span><span>(</span><span>conn</span><span>,</span><span> username</span><span>,</span><span> score</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">    #</span><span style="color: light-dark(#6A737D, #6A737D);"> The User Object</span></span>
+<span class="giallo-l"><span>    uid</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> conn</span><span>.</span><span>incr</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">user:idgen</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>    conn</span><span>.</span><span>hset</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">user:obj:</span><span style="color: light-dark(#005CC5, #79B8FF);">%d</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#D73A49, #F97583);"> %</span><span> uid</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">id</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span> username</span><span>)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">    #</span><span style="color: light-dark(#6A737D, #6A737D);"> datastructures necessary to implement search</span></span>
+<span class="giallo-l"><span>    conn</span><span>.</span><span>zadd</span><span>(</span><span>usernames_zset</span><span>,</span><span> username</span><span>,</span><span> score</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">def</span><span style="color: light-dark(#6F42C1, #B392F0);"> add_test_data</span><span>(</span><span>conn</span><span>)</span><span>:</span></span>
+<span class="giallo-l"><span>    test_data</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> (</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">abc</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">ab</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">a</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">shekhar</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">shon</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">sh</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span> \</span></span>
+<span class="giallo-l"><span style="color: light-dark(#032F62, #9ECBFF);">        &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">zxcvbnmasdfghjklqwertyuiop0</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">zxcvbnmasdfghjklqwertyuiop00</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">    for</span><span> username</span><span style="color: light-dark(#D73A49, #F97583);"> in</span><span> test_data</span><span>:</span></span>
+<span class="giallo-l"><span>        score</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> get_score</span><span>(</span><span>username</span><span>)</span></span>
+<span class="giallo-l"><span>        add_user</span><span>(</span><span>conn</span><span>,</span><span> username</span><span>,</span><span> score</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#D73A49, #F97583);">import</span><span> redis</span></span>
+<span class="giallo-l"><span>conn</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> redis</span><span>.</span><span>Redis</span><span>(</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>add_test_data</span><span>(</span><span>conn</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#6A737D, #6A737D);">#</span><span style="color: light-dark(#6A737D, #6A737D);"> conn.zrange(usernames_zset, 0, -1) # Whole set</span></span>
+<span class="giallo-l"><span>a_score</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> get_score</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">a</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>b_score</span><span style="color: light-dark(#D73A49, #F97583);"> =</span><span> get_next_score</span><span>(</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">a</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">Find all users starting with &quot;a&quot; -&gt; INF</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span> conn</span><span>.</span><span>zrangebyscore</span><span>(</span><span>usernames_zset</span><span>,</span><span> a_score</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">INF</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">Find all users starting with &quot;a&quot;</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span> conn</span><span>.</span><span>zrangebyscore</span><span>(</span><span>usernames_zset</span><span>,</span><span> a_score</span><span>,</span><span> b_score</span><span>)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">Find all users starting with &quot;a&quot; limit 2</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#005CC5, #79B8FF);">print</span><span> conn</span><span>.</span><span>zrangebyscore</span><span>(</span><span>usernames_zset</span><span>,</span><span> a_score</span><span>,</span><span style="color: light-dark(#032F62, #9ECBFF);"> &#39;</span><span style="color: light-dark(#032F62, #9ECBFF);">INF</span><span style="color: light-dark(#032F62, #9ECBFF);">&#39;</span><span>,</span><span style="color: light-dark(#005CC5, #79B8FF);"> 0</span><span>,</span><span style="color: light-dark(#005CC5, #79B8FF);"> 2</span><span>)</span></span></code></pre><h2 id="discussion">Discussion</h2>
+<p>This to demonstrate simple redis pattern and using it in Python.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a rel="external" href="http://code.google.com/p/redis/wiki/ZrangebyscoreCommand">ZrangebyscoreCommand</a></li>
+</ul>
+<p>There are already some good writeups on related topics.</p>
+<ul>
+<li><a rel="external" href="http://playnice.ly/blog/2010/05/24/redis-multi-field-searching-and-filtering/">playnicely</a></li>
+<li><a rel="external" href="http://antirez.com/post/autocomplete-with-redis.html">autocomplete</a></li>
+</ul>
+
+
+<p class="tagsData">
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  <div class="footRight">
+    
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;github.com&#x2F;shon" title="github"><svg class="icons icons__background"><use href="icons.svg#github"></use></svg></a>
+      
+        <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https:&#x2F;&#x2F;twitter.com&#x2F;shon_" title="twitter"><svg class="icons icons__background"><use href="icons.svg#twitter"></use></svg></a>
+      
+    
+    
+      <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+    
+  </div>
+</div>
+      </footer>
+    </div>
+  </body>
+</html>
