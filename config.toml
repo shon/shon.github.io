@@ -19,8 +19,9 @@ taxonomies = [
 
 [markdown.highlighting]
 highlight_code = true
-# Theme can be customised by setting the `theme` variable to a theme supported by Zola
-theme = "github-light"
+# Adaptive themes: switches based on system preference
+light_theme = "github-light"
+dark_theme = "github-dark"
 
 
 [extra]
