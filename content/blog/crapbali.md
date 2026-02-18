@@ -7,7 +7,7 @@ date = "2015-08-01"
 So Friday afternoon we decided to watch Bahubali. We are a bunch of
 geeks who code for living.
 
-![image](/static/images/bahubali.jpg)
+![image](/images/bahubali.jpg)
 
 Tickets were a bit expensive but we were really curious, reading with
 positive reviews all over (five stars and all). The expectation was

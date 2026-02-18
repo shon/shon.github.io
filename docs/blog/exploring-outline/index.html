@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&subset=latin&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Exploring Team Knowledge wiki Outline (getoutline.com)</title>
+
+
+
+<meta name="title" content="Exploring Team Knowledge wiki Outline (getoutline.com)">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shon.github.io/blog/exploring-outline/">
+
+<meta property="og:site_name" content="">
+
+
+<meta property="og:title" content="Exploring Team Knowledge wiki Outline (getoutline.com)">
+
+
+
+<meta property="og:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shon.github.io/blog/exploring-outline/">
+
+<meta property="twitter:title" content="Exploring Team Knowledge wiki Outline (getoutline.com)">
+
+
+
+<meta property="twitter:image" content="https:&#x2F;&#x2F;shon.github.io&#x2F;favicon.ico">
+
+
+<link rel="canonical" href="https://shon.github.io/blog/exploring-outline/">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://shon.github.io/favicon.ico">
+
+
+
+
+<link rel="alternate" type="application/atom+xml" title="RSS" href="https://shon.github.io/atom.xml"> 
+
+
+
+<link rel="stylesheet" href="https://shon.github.io/css/style.css"/>
+
+<script src="https://shon.github.io/js/script.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+<nav class="navBar">
+  
+  
+  
+  <a href="https://shon.github.io" >home </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/work" > work</a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/journal" > journal </a>
+  
+  
+  
+  
+  <a href="https://shon.github.io/blog" > blog</a>
+  
+  
+
+  <div class="themeSwitch">
+    
+    <button class="themeButton light" onclick="setTheme('light')" title="Light mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#lightMode"></use></svg></button>
+    <button class="themeButton dark" onclick="setTheme('dark')" title="Dark mode"><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#darkMode"></use></svg></button>
+
+    
+  </div>
+</nav>
+
+
+      </header>
+      <main>
+        
+<div><a href="..">..</a>/<span class="metaData">exploring-outline</span></div>
+<time datetime="2025-07-13">Published on: <span class="metaData">2025-07-13</span></time>
+
+<h1>Exploring Team Knowledge wiki Outline (getoutline.com)</h1>
+
+
+
+<p>Sometime back, I have stumbled upon <a href="https://getoutline.com/">getoutline.com</a> since then I wanted to explore it! If you haven't heard of it, Outline is a fantastic, open-source team knowledge base that's designed to be fast, collaborative, and super easy to use. It is a powerful and cost-effective option right off the bat! Though, I wish for a better domain name 😉.</p>
+<p>My main goals for this exploration:</p>
+<ul>
+<li><strong>Migrate our existing GitHub Wiki</strong></li>
+<li><strong>Publish part of the wiki as a public help site</strong></li>
+</ul>
+<p>So, how did it go? Let's dive in! 👇</p>
+<p>Minor Hurdle 1: Could not sign up with individual email. One needs corp SSO account such Google workspace/Slack.</p>
+<p>Signed up. Cloned my github wiki repository.</p>
+<p>Used chatgpt to write a script that imports all the content (markdown and images) to outline using it's API.</p>
+<p>Minor hurdle 2: API has somewhat restrictive rate limiting for import which was then overcome with 60 sec sleep between the calls.</p>
+<p>Imported as a collection. Import works and looks great.</p>
+<p>Figured out that <code>collection</code> can't published (public) directly. A document can be published and it's nested documents automatically be published.</p>
+<p>Modified the script for this and then published. Worked perfect!</p>
+<p>Now figuring out how to make certain links friendly. For example <code>/s/guide/doc/sharing-LG2sGOLIpl</code> to <code>/s/guide/doc/sharing</code> without the id suffix. <a href="https://docs.getoutline.com/s/guide/doc/sharing-LG2sGOLIpl">Documentation</a> does say that it works but my guess it doesn't.</p>
+<p>Here is the <a href="https://gist.github.com/shon/247004a6bfbba47fe2cccbfcdf6fc394">script</a> if someone is interested</p>
+<p>Custom domain is available for about $240 per year, so I am skipping that. Also there is no option in the settings but it's manual process based on support request. I decided to skip it.</p>
+<p>So far Outline experience has been positive! It's a user-friendly, and highly capable platform for managing team knowledge. Great APIs too. If you're looking for a powerful alternative to wikis/notion especially if you're on a budget, I highly recommend checking out <a href="https://getoutline.com/">getoutline.com</a>!</p>
+
+
+<p class="tagsData">
+  
+  
+  <a href="/tags/makrdown">&#47;makrdown&#47;</a>
+  
+  <a href="/tags/wiki">&#47;wiki&#47;</a>
+  
+  <a href="/tags/knowledge-base">&#47;knowledge-base&#47;</a>
+  
+  
+</p>
+
+      </main>
+      <footer>
+        <hr>
+<div class=footContainer>
+  <div class="footLeft">
+    <p>Licensed under <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Licence_MIT">MIT</a><br>
+      Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme &amp; <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/veqev">veqev</a> colors.<br>
+    </p>
+  </div>
+  
+  <div class="footRight">
+    <a class="icons__background" target="_blank" rel="noopener noreferrer" href="https://shon.github.io/atom.xml" title="Subscribe via RSS for updates."><svg class="icons icons__background"><use href="https://shon.github.io/icons.svg#rss"></use></svg></a>
+  </div>
+  
+</div>
+      </footer>
+    </div>
+  </body>
+</html>

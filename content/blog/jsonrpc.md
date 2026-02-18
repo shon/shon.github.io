@@ -41,11 +41,11 @@ http.
 
 Let us see how does jquery JSONRPC plugin calls this API.
 
-![image](/static/images/001.png)
+![image](/images/001.png)
 
 Result
 
-![image](/static/images/003.png)
+![image](/images/003.png)
 
 jsonrpc function that you see in above screenshot is part of our js
 client library. Really it is a a few lines wrapper on top of [jquery

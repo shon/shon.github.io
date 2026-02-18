@@ -90,7 +90,7 @@ intended.
 
 :   behave
 
-![Bingo!](/static/images/behave.png)
+![Bingo!](/images/behave.png)
 
 ## What next
 

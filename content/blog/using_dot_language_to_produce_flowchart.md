@@ -46,4 +46,4 @@ Here is the result.
 $ dot test.dot -Tpng -o test.png && eog test.png
 ```
 
-![image](/static/images/002.png)
+![image](/images/002.png)
